@@ -1,0 +1,15 @@
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\bin\Debug\Mod Tool.exe.config
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\bin\Debug\Mod Tool.exe
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\obj\Debug\Mod Tool.csproj.AssemblyReference.cache
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\obj\Debug\Mod Tool.csproj.SuggestedBindingRedirects.cache
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\obj\Debug\Mod_Tool.Properties.Resources.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\obj\Debug\Mod Tool.csproj.GenerateResource.cache
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\obj\Debug\Mod Tool.csproj.CoreCompileInputs.cache
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\obj\Debug\Mod Tool.csproj.CopyComplete
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\obj\Debug\Mod Tool.exe
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\obj\Debug\Mod_Tool.MainForm.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\obj\Debug\Mod_Tool.Forms.CreateModFilesRenpy.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\obj\Debug\Mod Tool.csproj.Fody.CopyLocal.cache
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\obj\Debug\Mod_Tool.Forms.CreateWorkshopItem.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool\Mod Tool\obj\Debug\Mod_Tool.Forms.UploadWorskhopItem.resources
