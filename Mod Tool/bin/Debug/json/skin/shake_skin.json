@@ -1,0 +1,61 @@
+{
+  "Mode": 0,
+  "List": [
+    {
+      "Name": "snake_up",
+      "Texture": 0,
+      "Size": "60x60",
+      "Game": "head_up",
+      "SizeEditor": false
+    },
+    {
+      "Name": "snake_right",
+      "Texture": 1,
+      "Size": "60x60",
+      "Game": "head_right",
+      "SizeEditor": false
+    },
+    {
+      "Name": "snake_down",
+      "Texture": 2,
+      "Size": "60x60",
+      "Game": "head_down",
+      "SizeEditor": false
+    },
+    {
+      "Name": "snake_left",
+      "Texture": 3,
+      "Size": "60x60",
+      "Game": "head_left",
+      "SizeEditor": false
+    },
+    {
+      "Name": "shake_body",
+      "Texture": 4,
+      "Size": "60x60",
+      "Game": "body",
+      "SizeEditor": false
+    },
+    {
+      "Name": "snake_apple",
+      "Texture": 5,
+      "Size": "60x60",
+      "Game": "apple",
+      "SizeEditor": false
+    },
+    {
+      "Name": "snake_poisoned_apple",
+      "Texture": 6,
+      "Size": "60x60",
+      "Game": "poisoned_apple",
+      "SizeEditor": false
+    },
+    {
+      "Name": "snake_bg",
+      "Texture": 7,
+      "Size": "1920x1080",
+      "Game": "background",
+      "SizeEditor": false
+    }
+  ]
+}

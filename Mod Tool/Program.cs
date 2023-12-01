@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Mod_Tool
+using ModTool.Forms;
+
+namespace ModTool
 {
-    internal static class Program
+    public static class Program
     {
-        /// <summary>
-        /// Главная точка входа для приложения.
-        /// </summary>
+        public static List<Project> Projects = new List<Project>();
+
+        public static List<Item> Sprites { get; private set; } = new List<Item>();
+        public static List<Item> Audio { get; private set; } = new List<Item>();
+
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new Main());
         }
     }
 }

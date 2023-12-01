@@ -1,0 +1,61 @@
+{
+  "Mode": 0,
+  "List": [
+    {
+      "Name": "Safe Mode",
+      "Default": "false",
+      "Game": "safe_mode",
+      "NumberEditor": false,
+      "TextEditor": false,
+      "BoolEditor": true
+    },
+    {
+      "Name": "Game Speed",
+      "Default": "0,095",
+      "Game": "game_speed",
+      "NumberEditor": true,
+      "TextEditor": false,
+      "BoolEditor": false
+    },
+    {
+      "Name": "Score",
+      "Default": "0",
+      "Game": "score",
+      "NumberEditor": true,
+      "TextEditor": false,
+      "BoolEditor": false
+    },
+    {
+      "Name": "Snake Size",
+      "Default": "60",
+      "Game": "snake_size",
+      "NumberEditor": true,
+      "TextEditor": false,
+      "BoolEditor": false
+    },
+    {
+      "Name": "Swipe Threshold",
+      "Default": "50",
+      "Game": "swipe_threshold",
+      "NumberEditor": true,
+      "TextEditor": false,
+      "BoolEditor": false
+    },
+    {
+      "Name": "Apple Count",
+      "Default": "1",
+      "Game": "apple_count",
+      "NumberEditor": true,
+      "TextEditor": false,
+      "BoolEditor": false
+    },
+    {
+      "Name": "Apple Poisoned",
+      "Default": "false",
+      "Game": "apple_poisoned",
+      "NumberEditor": false,
+      "TextEditor": false,
+      "BoolEditor": true
+    }
+  ]
+}

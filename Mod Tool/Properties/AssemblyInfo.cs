@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
-[assembly: AssemblyTitle("Mod Tool")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Game Mod Tool")]
+[assembly: AssemblyDescription("Tool for creating modifications")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Crucial Experiment")]
-[assembly: AssemblyProduct("Mod Tool")]
-[assembly: AssemblyCopyright("Crucial Experiment Copyright ©  2023")]
+[assembly: AssemblyProduct("Game Mod Tool")]
+[assembly: AssemblyCopyright("Crucial Experiment 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("e31810e4-33ff-4d75-8884-032094abce91")]
+[assembly: Guid("c54afb31-3cc6-4376-99c3-e23bbeb935eb")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.1.7.3")]
+[assembly: AssemblyFileVersion("0.1.7.3")]
