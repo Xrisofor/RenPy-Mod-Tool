@@ -33,8 +33,7 @@
             this.fastColoredTextBox1 = new FastColoredTextBoxNS.FastColoredTextBox();
             this.RenpyAutoComplete = new AutocompleteMenuNS.AutocompleteMenu();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.rpyOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.rpySaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.RenPyDocButton = new System.Windows.Forms.Button();
             this.rpaExpButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.TableButton = new System.Windows.Forms.Button();
@@ -44,6 +43,8 @@
             this.SaveButton = new System.Windows.Forms.Button();
             this.OpenFileButton = new System.Windows.Forms.Button();
             this.NewFileButton = new System.Windows.Forms.Button();
+            this.rpyOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.rpySaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -97,6 +98,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.RenPyDocButton);
             this.panel1.Controls.Add(this.rpaExpButton);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.TableButton);
@@ -112,13 +114,19 @@
             this.panel1.Size = new System.Drawing.Size(32, 673);
             this.panel1.TabIndex = 1;
             // 
-            // rpyOpenFileDialog
+            // RenPyDocButton
             // 
-            this.rpyOpenFileDialog.Filter = "RenPy / RPY|*.rpy";
-            // 
-            // rpySaveFileDialog
-            // 
-            this.rpySaveFileDialog.Filter = "RenPy / RPY|*.rpy";
+            this.RenPyDocButton.BackgroundImage = global::ModTool.Properties.Resources.document2;
+            this.RenPyDocButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.RenPyDocButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.RenPyDocButton.FlatAppearance.BorderSize = 0;
+            this.RenPyDocButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RenPyDocButton.Location = new System.Drawing.Point(0, 511);
+            this.RenPyDocButton.Name = "RenPyDocButton";
+            this.RenPyDocButton.Size = new System.Drawing.Size(30, 40);
+            this.RenPyDocButton.TabIndex = 9;
+            this.RenPyDocButton.UseVisualStyleBackColor = true;
+            this.RenPyDocButton.Click += new System.EventHandler(this.RenPyDocButton_Click);
             // 
             // rpaExpButton
             // 
@@ -127,9 +135,9 @@
             this.rpaExpButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rpaExpButton.FlatAppearance.BorderSize = 0;
             this.rpaExpButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rpaExpButton.Location = new System.Drawing.Point(0, 575);
+            this.rpaExpButton.Location = new System.Drawing.Point(0, 551);
             this.rpaExpButton.Name = "rpaExpButton";
-            this.rpaExpButton.Size = new System.Drawing.Size(30, 32);
+            this.rpaExpButton.Size = new System.Drawing.Size(30, 40);
             this.rpaExpButton.TabIndex = 8;
             this.rpaExpButton.UseVisualStyleBackColor = true;
             this.rpaExpButton.Click += new System.EventHandler(this.rpaExpButton_Click);
@@ -141,9 +149,9 @@
             this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(0, 607);
+            this.button1.Location = new System.Drawing.Point(0, 591);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(30, 32);
+            this.button1.Size = new System.Drawing.Size(30, 40);
             this.button1.TabIndex = 7;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -155,9 +163,9 @@
             this.TableButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.TableButton.FlatAppearance.BorderSize = 0;
             this.TableButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TableButton.Location = new System.Drawing.Point(0, 639);
+            this.TableButton.Location = new System.Drawing.Point(0, 631);
             this.TableButton.Name = "TableButton";
-            this.TableButton.Size = new System.Drawing.Size(30, 32);
+            this.TableButton.Size = new System.Drawing.Size(30, 40);
             this.TableButton.TabIndex = 6;
             this.TableButton.UseVisualStyleBackColor = true;
             this.TableButton.Click += new System.EventHandler(this.TableButton_Click);
@@ -169,9 +177,9 @@
             this.FindAndReplaceButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.FindAndReplaceButton.FlatAppearance.BorderSize = 0;
             this.FindAndReplaceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FindAndReplaceButton.Location = new System.Drawing.Point(0, 160);
+            this.FindAndReplaceButton.Location = new System.Drawing.Point(0, 200);
             this.FindAndReplaceButton.Name = "FindAndReplaceButton";
-            this.FindAndReplaceButton.Size = new System.Drawing.Size(30, 32);
+            this.FindAndReplaceButton.Size = new System.Drawing.Size(30, 40);
             this.FindAndReplaceButton.TabIndex = 5;
             this.FindAndReplaceButton.UseVisualStyleBackColor = true;
             this.FindAndReplaceButton.Click += new System.EventHandler(this.FindAndReplaceButton_Click);
@@ -183,9 +191,9 @@
             this.FindButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.FindButton.FlatAppearance.BorderSize = 0;
             this.FindButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FindButton.Location = new System.Drawing.Point(0, 128);
+            this.FindButton.Location = new System.Drawing.Point(0, 160);
             this.FindButton.Name = "FindButton";
-            this.FindButton.Size = new System.Drawing.Size(30, 32);
+            this.FindButton.Size = new System.Drawing.Size(30, 40);
             this.FindButton.TabIndex = 4;
             this.FindButton.UseVisualStyleBackColor = true;
             this.FindButton.Click += new System.EventHandler(this.FindButton_Click);
@@ -197,9 +205,9 @@
             this.SaveAsButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.SaveAsButton.FlatAppearance.BorderSize = 0;
             this.SaveAsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveAsButton.Location = new System.Drawing.Point(0, 96);
+            this.SaveAsButton.Location = new System.Drawing.Point(0, 120);
             this.SaveAsButton.Name = "SaveAsButton";
-            this.SaveAsButton.Size = new System.Drawing.Size(30, 32);
+            this.SaveAsButton.Size = new System.Drawing.Size(30, 40);
             this.SaveAsButton.TabIndex = 3;
             this.SaveAsButton.UseVisualStyleBackColor = true;
             this.SaveAsButton.Click += new System.EventHandler(this.SaveAsButton_Click);
@@ -211,9 +219,9 @@
             this.SaveButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.SaveButton.FlatAppearance.BorderSize = 0;
             this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveButton.Location = new System.Drawing.Point(0, 64);
+            this.SaveButton.Location = new System.Drawing.Point(0, 80);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(30, 32);
+            this.SaveButton.Size = new System.Drawing.Size(30, 40);
             this.SaveButton.TabIndex = 2;
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
@@ -225,9 +233,9 @@
             this.OpenFileButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.OpenFileButton.FlatAppearance.BorderSize = 0;
             this.OpenFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OpenFileButton.Location = new System.Drawing.Point(0, 32);
+            this.OpenFileButton.Location = new System.Drawing.Point(0, 40);
             this.OpenFileButton.Name = "OpenFileButton";
-            this.OpenFileButton.Size = new System.Drawing.Size(30, 32);
+            this.OpenFileButton.Size = new System.Drawing.Size(30, 40);
             this.OpenFileButton.TabIndex = 1;
             this.OpenFileButton.UseVisualStyleBackColor = true;
             this.OpenFileButton.Click += new System.EventHandler(this.OpenFileButton_Click);
@@ -241,10 +249,18 @@
             this.NewFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.NewFileButton.Location = new System.Drawing.Point(0, 0);
             this.NewFileButton.Name = "NewFileButton";
-            this.NewFileButton.Size = new System.Drawing.Size(30, 32);
+            this.NewFileButton.Size = new System.Drawing.Size(30, 40);
             this.NewFileButton.TabIndex = 0;
             this.NewFileButton.UseVisualStyleBackColor = true;
             this.NewFileButton.Click += new System.EventHandler(this.NewFileButton_Click);
+            // 
+            // rpyOpenFileDialog
+            // 
+            this.rpyOpenFileDialog.Filter = "RenPy / RPY|*.rpy";
+            // 
+            // rpySaveFileDialog
+            // 
+            this.rpySaveFileDialog.Filter = "RenPy / RPY|*.rpy";
             // 
             // RenPyScript
             // 
@@ -280,5 +296,6 @@
         private System.Windows.Forms.Button TableButton;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button rpaExpButton;
+        private System.Windows.Forms.Button RenPyDocButton;
     }
 }

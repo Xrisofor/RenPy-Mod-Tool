@@ -35,6 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>ModTool.Program</StartupObject>
@@ -478,6 +479,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mt_icon.ico" />
+    <None Include="Resources\document2.png" />
     <None Include="Resources\lunacy.png" />
     <None Include="Resources\file_rpa.png" />
     <None Include="Resources\folder_rpa.png" />

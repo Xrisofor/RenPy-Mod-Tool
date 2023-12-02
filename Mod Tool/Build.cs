@@ -82,26 +82,29 @@ namespace ModTool
 
                 List<string> texturesTemp = new List<string>();
 
-                for (int i = 0; UserTextures.Count > i; i++)
+                foreach (var pair in UserTextures.OrderBy(kvp => kvp.Key))
                 {
-                    if ((i + 1) != UserTextures.Count)
-                        texturesTemp.Add($"\"{currentSkin.List[i].Game}\": \"{UserTextures.ElementAt(i).Value}\",");
+                    string textureLine = $"\"{currentSkin.List[pair.Key].Game}\": \"{pair.Value}\"";
+
+                    if (pair.Key != UserTextures.Keys.Max())
+                        texturesTemp.Add($"\"{currentSkin.List[pair.Key].Game}\": \"{pair.Value}\",");
                     else
-                        texturesTemp.Add($"\"{currentSkin.List[i].Game}\": \"{UserTextures.ElementAt(i).Value}\"");
+                        texturesTemp.Add($"\"{currentSkin.List[pair.Key].Game}\": \"{pair.Value}\"");
                 }
 
                 string textureTemp = null;
                 foreach (string tTemp in texturesTemp)
                 {
-                    string tTempRep = tTemp.Replace($@"{AppDomain.CurrentDomain.BaseDirectory}..\game\", string.Empty);
+                    string tTempRep = tTemp.Replace(Path.GetFullPath($@"{AppDomain.CurrentDomain.BaseDirectory}..\game\"), string.Empty);
+                    tTempRep = tTemp.Replace(Path.GetFullPath($@"{AppDomain.CurrentDomain.BaseDirectory}../game/"), string.Empty);
 
-                    if(SteamAPI.IsSteamRunning())
+                    if (SteamAPI.IsSteamRunning())
                     {
                         string pathFolder; uint folderSize = 100000000;
                         SteamApps.GetAppInstallDir(Steam.m_AppID, out pathFolder, folderSize);
                         
-                        tTempRep = tTempRep.Replace($@"{pathFolder}/game/", string.Empty);
-                        tTempRep = tTempRep.Replace($@"{pathFolder}\game\", string.Empty);
+                        tTempRep = tTempRep.Replace(Path.GetFullPath($@"{pathFolder}/game/"), string.Empty);
+                        tTempRep = tTempRep.Replace(Path.GetFullPath($@"{pathFolder}\game\"), string.Empty);
                     }
 
                     tTempRep = tTempRep.Replace(@"\", "/");
@@ -109,6 +112,7 @@ namespace ModTool
                     textureTemp += tTempRep + Environment.NewLine + "        ";
                 }
 
+                textureTemp = textureTemp.TrimEnd('\r', '\n', ' ', '\t');
                 rpaFile = rpaFile.Replace("{replace}", textureTemp);
 
                 File.Create($@"{FManager.GetProjectFolder(ModID)}\{Program.Projects[ModID].Name.ToLower().Replace(" ", "_")}.rpy").Close();
@@ -205,6 +209,7 @@ namespace ModTool
                     textureTemp += tTempRep + Environment.NewLine + "        ";
                 }
 
+                textureTemp = textureTemp.TrimEnd('\r', '\n', ' ', '\t');
                 rpaFile = rpaFile.Replace("{replace}", textureTemp);
 
                 File.Create($@"{FManager.GetProjectFolder(ModID)}\{Program.Projects[ModID].Name.ToLower().Replace(" ", "_")}.rpy").Close();

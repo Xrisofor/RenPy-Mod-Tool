@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using ModTool.Forms.Explorer;
@@ -136,6 +137,11 @@ namespace ModTool.Forms.Panel
         {
             Rpa_Explorer rpa_Explorer = new Rpa_Explorer();
             rpa_Explorer.Show();
+        }
+
+        private void RenPyDocButton_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://www.renpy.org/doc/html/quickstart.html#a-simple-game");
         }
     }
 }

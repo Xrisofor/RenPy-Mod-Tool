@@ -17,13 +17,11 @@ namespace ModTool.Forms.Explorer
         private readonly List<string> expandedList = new List<string>();
         private readonly Dictionary<string, long> indexPathSize = new Dictionary<string, long>();
 
-        private bool switchTabs;
         private readonly LibVLC libVlc;
         private MemoryStream memoryStreamVlc;
         private StreamMediaInput streamMediaInputVlc;
         private Media mediaVlc;
 
-        private int searchStartIndex = 0;
         private string defFileOpen = string.Empty;
 
         public Rpa_Explorer()
@@ -348,7 +346,6 @@ namespace ModTool.Forms.Explorer
                         }
                         else if (data.Key == RpaParser.PreviewTypes.Text)
                         {
-                            searchStartIndex = 0;
                             fastColoredTextBox1.Text = (string)data.Value;
                             tabControl1.SelectedTab = tabPage3;
                         }

@@ -9,7 +9,8 @@ namespace ModTool.Forms.Panel
 {
     public partial class Mode : Form
     {
-        private int ModID, ID;
+        private int ModID, ID, EditorType = -1;
+        private bool isUserChanging = false;
 
         private List<Classes.ModG> Modes = new List<Classes.ModG>();
         private Dictionary<string, string> UserParam = new Dictionary<string, string>();
@@ -39,8 +40,7 @@ namespace ModTool.Forms.Panel
 
             LoadComboBox();
         }
-
-        int EditorType = -1;
+        
         private void ExampleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var modeInfo = Modes.Find(id => id.Mode == ID).List[ExampleComboBox.SelectedIndex];
@@ -49,55 +49,47 @@ namespace ModTool.Forms.Panel
             TextEditor.Enabled = modeInfo.TextEditor;
             BoolEditor.Enabled = modeInfo.BoolEditor;
 
-            if(modeInfo.NumberEditor)
+            NumEditor.ValueChanged -= NumEditor_ValueChanged;
+            TextEditor.TextChanged -= TextEditor_TextChanged;
+            BoolEditor.CheckedChanged -= BoolEditor_CheckedChanged;
+
+            if (modeInfo.NumberEditor)
             {
-                EditorType = 0;
-
+                SetEditorType(0);
                 NumEditor.Focus();
-
-                if (UserParam.ContainsKey(modeInfo.Game))
-                    NumEditor.Value = Convert.ToDecimal(UserParam[modeInfo.Game].Replace(".", ","));
-                else
-                    NumEditor.Value = Convert.ToDecimal(modeInfo.Default);
-
-                TextEditor.Text = string.Empty;
-                BoolEditor.Checked = false;
+                NumEditor.Increment = modeInfo.Increment;
+                NumEditor.Value = UserParam.ContainsKey(modeInfo.Game) ? Convert.ToDecimal(UserParam[modeInfo.Game].Replace(".", ",")) : Convert.ToDecimal(modeInfo.Default);
+                NumEditor.ValueChanged += NumEditor_ValueChanged;
             }
 
             else if (modeInfo.TextEditor)
             {
-                EditorType = 1;
-
+                SetEditorType(1);
                 TextEditor.Focus();
-
-                if (UserParam.ContainsKey(modeInfo.Game))
-                    TextEditor.Text = UserParam[modeInfo.Game];
-                else
-                    TextEditor.Text = modeInfo.Default;
-
-                NumEditor.Value = 0;
-                BoolEditor.Checked = false;
+                TextEditor.Text = UserParam.ContainsKey(modeInfo.Game) ? UserParam[modeInfo.Game] : modeInfo.Default;
+                TextEditor.TextChanged += TextEditor_TextChanged;
             }
 
             else if (modeInfo.BoolEditor)
             {
-                EditorType = 2;
-
+                SetEditorType(2);
                 BoolEditor.Focus();
-
-                if (UserParam.ContainsKey(modeInfo.Game))
-                    BoolEditor.Checked = Convert.ToBoolean(UserParam[modeInfo.Game]);
-                else
-                    BoolEditor.Checked = Convert.ToBoolean(modeInfo.Default);
-
-                NumEditor.Value = 0;
-                TextEditor.Text = string.Empty;
+                BoolEditor.Checked = UserParam.ContainsKey(modeInfo.Game) ? Convert.ToBoolean(UserParam[modeInfo.Game]) : Convert.ToBoolean(modeInfo.Default);
+                BoolEditor.CheckedChanged += BoolEditor_CheckedChanged;
             }
 
             else
             {
                 MessageBox.Show("It was not possible to find an editor for this type.", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void SetEditorType(int type)
+        {
+            EditorType = type;
+            NumEditor.Value = 0;
+            TextEditor.Text = string.Empty;
+            BoolEditor.Checked = false;
         }
 
         private void NumEditor_ValueChanged(object sender, EventArgs e)

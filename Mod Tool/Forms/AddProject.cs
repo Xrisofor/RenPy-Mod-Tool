@@ -59,7 +59,7 @@ namespace ModTool.Forms
 
         private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = e.KeyChar != (char)Keys.Back && !char.IsSeparator(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar);
+            e.Handled = e.KeyChar != (char)Keys.Back && !char.IsSeparator(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '-';
         }
     }
 }

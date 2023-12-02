@@ -5,6 +5,7 @@
       "Name": "Safe Mode",
       "Default": "false",
       "Game": "safe_mode",
+      "Increment": 0,
       "NumberEditor": false,
       "TextEditor": false,
       "BoolEditor": true
@@ -13,6 +14,7 @@
       "Name": "Game Speed",
       "Default": "0,095",
       "Game": "game_speed",
+      "Increment": 0.1,
       "NumberEditor": true,
       "TextEditor": false,
       "BoolEditor": false
@@ -21,6 +23,7 @@
       "Name": "Score",
       "Default": "0",
       "Game": "score",
+      "Increment": 1,
       "NumberEditor": true,
       "TextEditor": false,
       "BoolEditor": false
@@ -29,6 +32,7 @@
       "Name": "Snake Size",
       "Default": "60",
       "Game": "snake_size",
+      "Increment": 1,
       "NumberEditor": true,
       "TextEditor": false,
       "BoolEditor": false
@@ -37,6 +41,7 @@
       "Name": "Swipe Threshold",
       "Default": "50",
       "Game": "swipe_threshold",
+      "Increment": 1,
       "NumberEditor": true,
       "TextEditor": false,
       "BoolEditor": false
@@ -45,6 +50,7 @@
       "Name": "Apple Count",
       "Default": "1",
       "Game": "apple_count",
+      "Increment": 1,
       "NumberEditor": true,
       "TextEditor": false,
       "BoolEditor": false
@@ -53,6 +59,7 @@
       "Name": "Apple Poisoned",
       "Default": "false",
       "Game": "apple_poisoned",
+      "Increment": 0,
       "NumberEditor": false,
       "TextEditor": false,
       "BoolEditor": true
