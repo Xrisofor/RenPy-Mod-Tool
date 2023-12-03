@@ -38,6 +38,13 @@ namespace ModTool.Forms
 
         private void Editor_Shown(object sender, EventArgs e)
         {
+            ChangeCoverButton.Text = Config.GetText("change_cover_button");
+            BuildButton.Text = Config.GetText("build_button");
+            TagsButton.Text = Config.GetText("tags_button");
+            PublishButton.Text = Config.GetText("publish_button");
+            BackButton.Text = Config.GetText("back_button");
+            label1.Text = Config.GetText("editor_description_title");
+
             if ( Program.Projects[ModID].Image != null && Program.Projects[ModID].Image != string.Empty && File.Exists(Program.Projects[ModID].Image) )
                 CoverPictureBox.BackgroundImage = Image.FromFile(Program.Projects[ModID].Image);
 
@@ -129,7 +136,9 @@ namespace ModTool.Forms
         private void BuildButton_Click(object sender, EventArgs e)
         {
             Build build = new Build(ModID);
-            PublishButton.Enabled = build.Compile();
+
+            if(SteamAPI.IsSteamRunning())
+                PublishButton.Enabled = build.Compile();
         }
 
         private void ChangeCoverButton_Click(object sender, EventArgs e)
@@ -138,7 +147,7 @@ namespace ModTool.Forms
             {
                 if(new FileInfo(coverOpenFileDialog.FileName).Length >= 1048576)
                 {
-                    MessageBox.Show("The image is too big! The maximum file size is 1 megabyte.", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Config.GetText("error_img_limit_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {

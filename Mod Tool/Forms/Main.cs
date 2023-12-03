@@ -13,6 +13,12 @@ namespace ModTool.Forms
 
             if (!Directory.Exists($@"{AppDomain.CurrentDomain.BaseDirectory}\..\game\mods\"))
                 Directory.CreateDirectory($@"{AppDomain.CurrentDomain.BaseDirectory}\..\game\mods\");
+
+            NewButton.Text = Config.GetText("new_button");
+            OpenButton.Text = Config.GetText("open_button");
+            DeleteButton.Text = Config.GetText("delete_button");
+            SettingsButton.Text = Config.GetText("settings_button");
+            label1.Text = $"{Config.GameName} - Mod Tool";
         }
 
         private void ResetProjectList()
@@ -78,12 +84,7 @@ namespace ModTool.Forms
                 ResetProjectList();
             }
             else if (addProject.ModType == ModType.ModeVisualScript)
-                MessageBox.Show("Visual scripting is still in the early stages of development, you can't create it!", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        }
-
-        private void Main_Load(object sender, EventArgs e)
-        {
-            ResetProjectList();
+                MessageBox.Show(Config.GetText("warning_vs_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -105,11 +106,24 @@ namespace ModTool.Forms
             editor.Show();
             Hide();
         }
-
         
         private void Main_Shown(object sender, EventArgs e)
         {
+            ResetProjectList();
+
             Steam.Init();
+        }
+
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            Forms.Settings settings = new Settings();
+            if(settings.ShowDialog() == DialogResult.OK)
+            {
+                NewButton.Text = Config.GetText("new_button");
+                OpenButton.Text = Config.GetText("open_button");
+                DeleteButton.Text = Config.GetText("delete_button");
+                SettingsButton.Text = Config.GetText("settings_button");
+            }
         }
     }
 }

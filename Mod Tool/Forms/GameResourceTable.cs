@@ -14,6 +14,13 @@ namespace ModTool.Forms
         {
             InitializeComponent();
 
+            Text = Config.GetText("game_resource_table_title");
+            CharacterButton.Text = Config.GetText("game_resource_table_character");
+            SoundListButton.Text = Config.GetText("game_resource_table_sound_list");
+            MusicListButton.Text = Config.GetText("game_resource_table_music_list");
+            SpritesButton.Text = Config.GetText("game_resource_table_sprites");
+            BackgroundButton.Text = Config.GetText("game_resource_table_background");
+
             string jsonFile = File.ReadAllText($@"{FManager.GetTableFolder()}\characters.json");
             List<string> strings = JsonConvert.DeserializeObject<List<string>>(jsonFile);
 

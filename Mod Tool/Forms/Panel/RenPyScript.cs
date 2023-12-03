@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using ModTool.Forms.Explorer;
+using System.Threading;
 
 namespace ModTool.Forms.Panel
 {
@@ -28,6 +29,7 @@ namespace ModTool.Forms.Panel
             this.OpenFilePath = openFilePath;
 
             fastColoredTextBox1.Text = File.ReadAllText(OpenFilePath);
+            RunFileFromProgram(openFilePath);
 
             rpyOpenFileDialog.InitialDirectory = FManager.GetProjectFolder(ModID);
             rpySaveFileDialog.InitialDirectory = FManager.GetProjectFolder(ModID);
@@ -74,6 +76,7 @@ namespace ModTool.Forms.Panel
                 OpenFilePath = rpyOpenFileDialog.FileName;
 
             fastColoredTextBox1.Text = File.ReadAllText(OpenFilePath);
+            RunFileFromProgram(OpenFilePath);
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -118,6 +121,7 @@ namespace ModTool.Forms.Panel
                 OpenFilePath = rpySaveFileDialog.FileName;
                 File.Create(OpenFilePath).Close();
                 fastColoredTextBox1.Clear();
+                RunFileFromProgram(OpenFilePath);
             }
         }
 
@@ -142,6 +146,37 @@ namespace ModTool.Forms.Panel
         private void RenPyDocButton_Click(object sender, EventArgs e)
         {
             Process.Start("https://www.renpy.org/doc/html/quickstart.html#a-simple-game");
+        }
+
+        private void RunFileFromProgram(string file)
+        {
+            if (Config.UserSettings.ScriptEditor != "default")
+            {
+                ProcessStartInfo psi = new ProcessStartInfo();
+
+                FileSystemWatcher fileSystemWatcher = new FileSystemWatcher(Path.GetDirectoryName(file));
+                fileSystemWatcher.Changed += (s, e) => { if (e.ChangeType != WatcherChangeTypes.Changed) { return; } Thread.Sleep(100); fastColoredTextBox1.Text = File.ReadAllText(e.FullPath); };
+                fileSystemWatcher.Filter = Path.GetFileName(file);
+                fileSystemWatcher.IncludeSubdirectories = true;
+                fileSystemWatcher.EnableRaisingEvents = true;
+
+                var value = string.Empty;
+                Config.UserSettings.ScriptEditorList.TryGetValue(Config.UserSettings.ScriptEditor, out value);
+                psi.FileName = value;
+
+                switch (Config.UserSettings.ScriptEditor.ToLower())
+                {
+                    case "code":
+                        psi.Arguments = $"-g \"{file}\"";
+                        break;
+
+                    default:
+                        psi.Arguments = $"\"{file} \"";
+                        break;
+                }
+
+                Process.Start(psi);
+            }
         }
     }
 }

@@ -18,6 +18,12 @@ namespace ModTool.Forms
             newGraphicsCheckBox.Checked = Program.Projects[ModID].Tags.Contains("New Graphics");
             newFeaturesCheckBox.Checked = Program.Projects[ModID].Tags.Contains("New Features");
             newCharactersCheckBox.Checked = Program.Projects[ModID].Tags.Contains("New Characters");
+
+            Text = Config.GetText("tags_manager_title");
+            newStoryCheckBox.Text = Config.GetText("new_story_tag");
+            newGraphicsCheckBox.Text = Config.GetText("new_graphics_tag");
+            newFeaturesCheckBox.Text = Config.GetText("new_features_tag");
+            newCharactersCheckBox.Text = Config.GetText("new_characters_tag");
         }
 
         private void CheckBox_CheckedChanged(object sender, EventArgs e)

@@ -17,7 +17,7 @@ namespace ModTool
 
             if (!SteamAPI.IsSteamRunning())
             {
-                MessageBox.Show("Steam process not found, the program will continue without the ability to publish!", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Config.GetText("warning_steam_running_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             SteamAPI.Init();

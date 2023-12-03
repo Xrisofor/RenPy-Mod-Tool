@@ -23,6 +23,15 @@ namespace ModTool.Forms.Panel
             this.ModID = ModID;
             this.ID = ID;
 
+            label1.Text = Config.GetText("skin_creation_insturment_title");
+            groupBox1.Text = Config.GetText("example_title");
+            groupBox2.Text = Config.GetText("your_version_title");
+            label3.Text = Config.GetText("your_texture_title");
+            ExampleLabel.Text = Config.GetText("skin_example_label_null");
+            label2.Text = Config.GetText("skin_texture_different");
+            UserChangeButton.Text = Config.GetText("user_change_button");
+            UserClearButton.Text = Config.GetText("user_clear_button");
+
             var allSkins = FManager.GetAllSkinsFiles();
             var allExampleTextures = FManager.GetAllResourcesFiles();
 
@@ -63,7 +72,7 @@ namespace ModTool.Forms.Panel
             else
                 UserTexture.BackgroundImage = null;
 
-            ExampleLabel.Text = $"The size of the original image is {skinInfo.Size}";
+            ExampleLabel.Text = $"{Config.GetText("skin_example_label")} {skinInfo.Size}";
         
             if(skinInfo.SizeEditor)
             {

@@ -258,6 +258,7 @@
     <Compile Include="Classes\Skin.cs" />
     <Compile Include="Classes\VisualScript.cs" />
     <Compile Include="Classes\Workshop_Struct.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="FCT_RenPy.cs" />
     <Compile Include="FManager.cs" />
     <Compile Include="Forms\AddProject.cs">
@@ -332,6 +333,12 @@
     <Compile Include="Forms\Panel\VisualScript.Designer.cs">
       <DependentUpon>VisualScript.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SpriteManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -389,6 +396,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Panel\VisualScript.resx">
       <DependentUpon>VisualScript.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SpriteManager.resx">
       <DependentUpon>SpriteManager.cs</DependentUpon>

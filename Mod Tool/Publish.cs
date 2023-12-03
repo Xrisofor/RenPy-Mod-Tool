@@ -68,7 +68,7 @@ namespace ModTool
                 else
                 {
                     Application.UseWaitCursor = false;
-                    MessageBox.Show("Failed to translate ItemID to uing, maybe Steam didn't return the ItemID!", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Config.GetText("error_steam_itemid_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 var json = JsonConvert.SerializeObject(Program.Projects[ModID]);
@@ -79,7 +79,7 @@ namespace ModTool
             else
             {
                 Application.UseWaitCursor = false;
-                MessageBox.Show("Errors in creating a modification.", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Config.GetText("error_steam_create_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -115,19 +115,19 @@ namespace ModTool
 
             if (param.m_eResult == EResult.k_EResultOK)
             {
-                MessageBox.Show("The modification has been successfully uploaded to Steam!", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Config.GetText("info_steam_success_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (param.m_eResult == EResult.k_EResultLimitExceeded)
             {
-                MessageBox.Show("The preview image is too large, it must be less than 1 Megabyte or there is not enough space in Steam Cloud.", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Config.GetText("error_steam_limit_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (param.m_eResult == EResult.k_EResultFileNotFound)
             {
-                MessageBox.Show("The workshop information for the item could not be retrieved or the preview file could not be read or the specified content folder is invalid.", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Config.GetText("error_steam_filenotfound_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Errors in creating a modification.", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Config.GetText("error_steam_create_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

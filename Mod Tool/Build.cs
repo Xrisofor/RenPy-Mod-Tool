@@ -119,11 +119,16 @@ namespace ModTool
                 File.WriteAllText($@"{FManager.GetProjectFolder(ModID)}\{Program.Projects[ModID].Name.ToLower().Replace(" ", "_")}.rpy", rpaFile);
 
                 if(showMessage)
-                    MessageBox.Show("The modification was successfully assembled you can test it in the game!", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Config.GetText("info_build_success_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
+            {
                 if (showMessage)
-                    MessageBox.Show("It's impossible to do a build without at least one texture", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                {
+                    MessageBox.Show(Config.GetText("error_texture_none_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new Exception();
+                }
+            }
         }
 
         private void CompileMode(int Type = 0, bool showMessage = true)
@@ -216,11 +221,16 @@ namespace ModTool
                 File.WriteAllText($@"{FManager.GetProjectFolder(ModID)}\{Program.Projects[ModID].Name.ToLower().Replace(" ", "_")}.rpy", rpaFile);
                 
                 if (showMessage)
-                    MessageBox.Show("The modification was successfully assembled you can test it in the game!", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Config.GetText("info_build_success_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
+            {
                 if (showMessage)
-                    MessageBox.Show("It's impossible to do a build without at least one texture", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                {
+                    MessageBox.Show(Config.GetText("error_param_none_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new Exception();
+                }
+            }      
         }
     }
 }

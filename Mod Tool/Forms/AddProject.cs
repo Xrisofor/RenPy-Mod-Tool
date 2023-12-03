@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ModTool.Forms
@@ -12,6 +11,14 @@ namespace ModTool.Forms
         public AddProject()
         {
             InitializeComponent();
+
+            Text = Config.GetText("add_project_title");
+            label1.Text = Config.GetText("add_project_title");
+            label3.Text = Config.GetText("add_project_name");
+            label5.Text = Config.GetText("add_project_type");
+
+            button1.Text = Config.GetText("cancel_button");
+            button2.Text = Config.GetText("create_button");
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

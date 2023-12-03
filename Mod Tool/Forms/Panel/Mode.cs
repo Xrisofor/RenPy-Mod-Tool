@@ -22,6 +22,14 @@ namespace ModTool.Forms.Panel
             this.ModID = ModID;
             this.ID = ID;
 
+            label1.Text = Config.GetText("tool_creating_mini_modes_title");
+            groupBox1.Text = Config.GetText("mode_title");
+            groupBox2.Text = Config.GetText("customizations_title");
+            ExampleLabel.Text = Config.GetText("number_title");
+            label2.Text = Config.GetText("text_title");
+            label3.Text = Config.GetText("boolean_title");
+            BoolEditor.Text = Config.GetText("boolean_title");
+
             var allModes = FManager.GetAllModesFiles();
 
             foreach (string file in allModes)

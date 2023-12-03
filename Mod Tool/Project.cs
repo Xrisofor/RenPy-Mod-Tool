@@ -1,11 +1,4 @@
-﻿using ModTool.Forms;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ModTool
 {
@@ -40,6 +33,8 @@ namespace ModTool
         public Project(string name, ModType type)
         {
             Name = name; Type = type;
+
+            Description = Config.GetText("project_description");
 
             switch (Type)
             {

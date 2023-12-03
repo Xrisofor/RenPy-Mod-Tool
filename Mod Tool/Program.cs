@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
-
 using ModTool.Forms;
+using Newtonsoft.Json;
 
 namespace ModTool
 {
@@ -16,6 +17,24 @@ namespace ModTool
         [STAThread]
         static void Main()
         {
+            if( File.Exists($@"{FManager.GetJsonFolder()}\settings.json") )
+            {
+                Config.UserSettings = JsonConvert.DeserializeObject<Settings>( File.ReadAllText($@"{FManager.GetJsonFolder()}\settings.json") );
+            }
+            else
+            {
+                Config.UserSettings = new Settings();
+                File.WriteAllText( $@"{FManager.GetJsonFolder()}\settings.json", JsonConvert.SerializeObject(Config.UserSettings) );
+            }
+
+            var allLanguage = Directory.GetFiles($@"{FManager.GetJsonFolder()}\language", "*.json", SearchOption.TopDirectoryOnly);
+
+            foreach (string file in allLanguage)
+            {
+                if (Path.GetFileNameWithoutExtension(file) == Config.UserSettings.Language)
+                    Config.Language = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(file));
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main());

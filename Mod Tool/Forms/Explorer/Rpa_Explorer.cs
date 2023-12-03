@@ -98,9 +98,17 @@ namespace ModTool.Forms.Explorer
 
             rpaParser = new RpaParser();
             rpaParser.PythonLocation = $@"{FManager.GetLibFolder()}\python.exe";
-            rpaParser.LoadArchive(openFile);
 
-            GenerateTreeView();
+            if (File.Exists(openFile))
+            {
+                rpaParser.LoadArchive(openFile);
+
+                GenerateTreeView();
+            }
+            else
+            {
+                MessageBox.Show(Config.GetText("error_rpa_open_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void GenerateTreeView()
@@ -322,7 +330,7 @@ namespace ModTool.Forms.Explorer
                                 if (ex.Message.StartsWith(rpaParser.rpycInfoBanner))
                                 {
                                     data = new KeyValuePair<string, object>(RpaParser.PreviewTypes.Text,
-                                        string.Format("Loading preview failed with error: {0} Use 'Options' to define external locations for this preview.", ex.Message));
+                                        string.Format("Loading preview failed with error: {0}", ex.Message));
                                 }
                                 else
                                 {
@@ -335,7 +343,7 @@ namespace ModTool.Forms.Explorer
                         if (node_pt != ".rpyc" && node_pt != ".rpyb" && node_pt != ".rpym" && node_pt != ".rpymc") { }
                         else
                         {
-                            MessageBox.Show("Game scripts are forbidden to open, if you really want to try RPA Extractor Online or unrpyc!", "Game Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(Config.GetText("error_rpy_open_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                         }
 
@@ -368,7 +376,7 @@ namespace ModTool.Forms.Explorer
                     {
                         MessageBox.Show(
                             string.Format("Loading preview failed with following error: {0}", ex.Message),
-                            "Preview load failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     break;
@@ -384,6 +392,12 @@ namespace ModTool.Forms.Explorer
         private void FindButton_Click(object sender, EventArgs e)
         {
             fastColoredTextBox1.ShowFindDialog();
+        }
+
+        private void Rpa_Explorer_Shown(object sender, EventArgs e)
+        {
+            Text = Config.GetText("rpa_explorer_title");
+            label1.Text = Config.GetText("rpa_explorer_not_supported");
         }
     }
 
