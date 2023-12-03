@@ -32,6 +32,8 @@ namespace ModTool.Forms
 
             if(Config.UserSettings.ScriptEditor != "default")
                 ScriptEditorComboBox.SelectedItem = Config.UserSettings.ScriptEditor;
+
+            PixelSampleColorMaxNum.Value = Config.UserSettings.PixelationSampleColors;
         }
 
         private void LanguageComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,6 +58,7 @@ namespace ModTool.Forms
             Text = Config.GetText("settings_button");
             label1.Text = Config.GetText("settings_language_title");
             label2.Text = Config.GetText("settings_script_editor_title");
+            label3.Text = Config.GetText("settings_pixel_sc_max_title");
         }
 
         private void Settings_FormClosed(object sender, FormClosedEventArgs e)
@@ -100,6 +103,12 @@ namespace ModTool.Forms
 
                 ScriptEditorComboBox.SelectedIndex = 0;
             }
+        }
+
+        private void PixelSampleColorMaxNum_ValueChanged(object sender, EventArgs e)
+        {
+            Config.UserSettings.PixelationSampleColors = (int)PixelSampleColorMaxNum.Value;
+            File.WriteAllText($@"{FManager.GetJsonFolder()}\settings.json", JsonConvert.SerializeObject(Config.UserSettings));
         }
     }
 }

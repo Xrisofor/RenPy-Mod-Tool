@@ -33,6 +33,7 @@
             this.ChangeCoverButton = new System.Windows.Forms.Button();
             this.PublishButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BackButton = new System.Windows.Forms.Button();
             this.TagsButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.DescriptionTextBox = new System.Windows.Forms.TextBox();
@@ -42,7 +43,6 @@
             this.IconsList = new System.Windows.Forms.ImageList(this.components);
             this.DCPanel = new System.Windows.Forms.Panel();
             this.coverOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.BackButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CoverPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -92,6 +92,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(288, 673);
             this.panel1.TabIndex = 2;
+            // 
+            // BackButton
+            // 
+            this.BackButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BackButton.Enabled = false;
+            this.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BackButton.Location = new System.Drawing.Point(11, 625);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(264, 35);
+            this.BackButton.TabIndex = 6;
+            this.BackButton.Text = "Back";
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // TagsButton
             // 
@@ -192,20 +206,6 @@
             // coverOpenFileDialog
             // 
             this.coverOpenFileDialog.Filter = "Image|*.png;*.jpg";
-            // 
-            // BackButton
-            // 
-            this.BackButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BackButton.Enabled = false;
-            this.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BackButton.Location = new System.Drawing.Point(11, 625);
-            this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(264, 35);
-            this.BackButton.TabIndex = 6;
-            this.BackButton.Text = "Back";
-            this.BackButton.UseVisualStyleBackColor = true;
-            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // Editor
             // 

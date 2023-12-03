@@ -34,3 +34,4 @@ C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\bin\Debug\Syst
 C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Debug\ModTool.Resources.Resource_RPA.resources
 C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Debug\ModTool.Forms.Settings.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Debug\ModTool.Forms.Explorer.Pixelation.resources

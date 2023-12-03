@@ -33,6 +33,9 @@
             this.fastColoredTextBox1 = new FastColoredTextBoxNS.FastColoredTextBox();
             this.RenpyAutoComplete = new AutocompleteMenuNS.AutocompleteMenu();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rpyOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.rpySaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.PixelationButton = new System.Windows.Forms.Button();
             this.RenPyDocButton = new System.Windows.Forms.Button();
             this.rpaExpButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -43,8 +46,6 @@
             this.SaveButton = new System.Windows.Forms.Button();
             this.OpenFileButton = new System.Windows.Forms.Button();
             this.NewFileButton = new System.Windows.Forms.Button();
-            this.rpyOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.rpySaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -98,6 +99,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.PixelationButton);
             this.panel1.Controls.Add(this.RenPyDocButton);
             this.panel1.Controls.Add(this.rpaExpButton);
             this.panel1.Controls.Add(this.button1);
@@ -113,6 +115,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(32, 673);
             this.panel1.TabIndex = 1;
+            // 
+            // rpyOpenFileDialog
+            // 
+            this.rpyOpenFileDialog.Filter = "RenPy / RPY|*.rpy";
+            // 
+            // rpySaveFileDialog
+            // 
+            this.rpySaveFileDialog.Filter = "RenPy / RPY|*.rpy";
+            // 
+            // PixelationButton
+            // 
+            this.PixelationButton.BackgroundImage = global::ModTool.Properties.Resources.paint;
+            this.PixelationButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PixelationButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PixelationButton.FlatAppearance.BorderSize = 0;
+            this.PixelationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PixelationButton.Location = new System.Drawing.Point(0, 471);
+            this.PixelationButton.Name = "PixelationButton";
+            this.PixelationButton.Size = new System.Drawing.Size(30, 40);
+            this.PixelationButton.TabIndex = 10;
+            this.PixelationButton.UseVisualStyleBackColor = true;
+            this.PixelationButton.Click += new System.EventHandler(this.PixelationButton_Click);
             // 
             // RenPyDocButton
             // 
@@ -254,14 +278,6 @@
             this.NewFileButton.UseVisualStyleBackColor = true;
             this.NewFileButton.Click += new System.EventHandler(this.NewFileButton_Click);
             // 
-            // rpyOpenFileDialog
-            // 
-            this.rpyOpenFileDialog.Filter = "RenPy / RPY|*.rpy";
-            // 
-            // rpySaveFileDialog
-            // 
-            this.rpySaveFileDialog.Filter = "RenPy / RPY|*.rpy";
-            // 
             // RenPyScript
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -297,5 +313,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button rpaExpButton;
         private System.Windows.Forms.Button RenPyDocButton;
+        private System.Windows.Forms.Button PixelationButton;
     }
 }

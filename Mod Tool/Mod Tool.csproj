@@ -273,6 +273,12 @@
     <Compile Include="Forms\Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Explorer\Pixelation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Explorer\Pixelation.Designer.cs">
+      <DependentUpon>Pixelation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Explorer\Rpa_Explorer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Explorer\Pixelation.resx">
+      <DependentUpon>Pixelation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Explorer\Rpa_Explorer.resx">
       <DependentUpon>Rpa_Explorer.cs</DependentUpon>
@@ -489,6 +498,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mt_icon.ico" />
+    <None Include="Resources\paint.png" />
     <None Include="Resources\document2.png" />
     <None Include="Resources\lunacy.png" />
     <None Include="Resources\file_rpa.png" />

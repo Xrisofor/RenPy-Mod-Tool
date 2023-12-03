@@ -178,5 +178,11 @@ namespace ModTool.Forms.Panel
                 Process.Start(psi);
             }
         }
+
+        private void PixelationButton_Click(object sender, EventArgs e)
+        {
+            Pixelation pixelation = new Pixelation(FManager.GetProjectFolder(ModID));
+            pixelation.ShowDialog();
+        }
     }
 }

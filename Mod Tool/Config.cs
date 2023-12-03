@@ -37,6 +37,8 @@ namespace ModTool
         public string Language = "english";
         public string ScriptEditor = "default";
 
+        public int PixelationSampleColors = 16;
+
         public Dictionary<string, string> ScriptEditorList = new Dictionary<string, string>();
     }
 }
