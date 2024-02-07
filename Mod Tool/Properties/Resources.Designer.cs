@@ -73,6 +73,16 @@ namespace ModTool.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap character {
+            get {
+                object obj = ResourceManager.GetObject("character", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap document2 {
             get {
                 object obj = ResourceManager.GetObject("document2", resourceCulture);
@@ -236,6 +246,26 @@ namespace ModTool.Properties {
         internal static System.Drawing.Bitmap tag2 {
             get {
                 object obj = ResourceManager.GetObject("tag2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Изображения_мастерсокй {
+            get {
+                object obj = ResourceManager.GetObject("Изображения мастерсокй", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Изображения_мастерсокй_2 {
+            get {
+                object obj = ResourceManager.GetObject("Изображения мастерсокй 2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Newtonsoft.Json;
 using Steamworks;
 using System.IO;
-using System.Collections.Generic;
 using ModTool.Workshop;
 
 namespace ModTool

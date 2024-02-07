@@ -128,10 +128,7 @@ namespace ModTool.Forms
             }
         }
 
-        private void Editor_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
+        private void Editor_FormClosing(object sender, FormClosingEventArgs e) => Application.Exit();
 
         private void BuildButton_Click(object sender, EventArgs e)
         {
@@ -173,7 +170,7 @@ namespace ModTool.Forms
             Publish publish = new Publish(ModID);
             publish.CheckWorkshopEULA();
 
-            if (Program.Projects[ModID].Type != ModType.ModRenPy)
+            if (Program.Projects[ModID].Type != ModType.ModRenPy && Program.Projects[ModID].Type == ModType.ModeVisualScript)
             {
                 Build build = new Build(ModID);
                 build.Compile(false);
@@ -194,7 +191,7 @@ namespace ModTool.Forms
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.FormClosing -= Editor_FormClosing;
-            Main.Show();
+            if(Main != null) Main.Show();
             this.Close();
         }
     }

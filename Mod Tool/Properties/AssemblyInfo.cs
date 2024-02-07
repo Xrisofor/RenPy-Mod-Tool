@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Crucial Experiment")]
 [assembly: AssemblyProduct("Game Mod Tool")]
-[assembly: AssemblyCopyright("Crucial Experiment 2023")]
+[assembly: AssemblyCopyright("Crucial Experiment 2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.1.7.5")]
-[assembly: AssemblyFileVersion("0.1.7.5")]
+[assembly: AssemblyVersion("0.1.8.7")]
+[assembly: AssemblyFileVersion("0.1.8.7")]

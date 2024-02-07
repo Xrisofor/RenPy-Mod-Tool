@@ -181,6 +181,7 @@
             this.CoverPictureBox.Location = new System.Drawing.Point(12, 39);
             this.CoverPictureBox.Name = "CoverPictureBox";
             this.CoverPictureBox.Size = new System.Drawing.Size(262, 165);
+            this.CoverPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.CoverPictureBox.TabIndex = 0;
             this.CoverPictureBox.TabStop = false;
             // 

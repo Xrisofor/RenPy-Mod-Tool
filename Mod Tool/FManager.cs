@@ -61,6 +61,16 @@ namespace ModTool
             return $@"{AppDomain.CurrentDomain.BaseDirectory}\resources";
         }
 
+        public static string GetScriptsFolder()
+        {
+            return $@"{AppDomain.CurrentDomain.BaseDirectory}\resources\scripts";
+        }
+
+        public static string[] GetAllScriptsFiles(string search = "*.lua")
+        {
+            return Directory.GetFiles(GetScriptsFolder(), search, SearchOption.AllDirectories);
+        }
+
         public static string[] GetAllSkinsFiles(string search = "*.json")
         {
             return Directory.GetFiles(GetSkinFolder(), search, SearchOption.AllDirectories);

@@ -18,6 +18,7 @@ namespace ModTool
             if (!SteamAPI.IsSteamRunning())
             {
                 MessageBox.Show(Config.GetText("warning_steam_running_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw new Exception();
             }
 
             SteamAPI.Init();
@@ -29,6 +30,14 @@ namespace ModTool
             var steamAPICall = SteamUGC.GetWorkshopEULAStatus();
             var steamAPICallResult = CallResult<WorkshopEULAStatus_t>.Create();
             steamAPICallResult.Set(steamAPICall, UpdateWorkshopEULAStatus);
+        }
+
+        public static bool IsSteamInit()
+        {
+            if (!SteamAPI.IsSteamRunning())
+                return false;
+
+            return SteamAPI.Init();
         }
 
         private static void UpdateWorkshopEULAStatus(WorkshopEULAStatus_t temp_WorkshopEULAStatus, bool bIOFailure)

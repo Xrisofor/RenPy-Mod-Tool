@@ -141,7 +141,12 @@ namespace ModTool.Forms.Explorer
                             {
                                 if (x + v < btm.Width && y + c < btm.Height)
                                 {
-                                    block.Add(btm.GetPixel(x + v, y + c));
+                                    Color pixelColor = btm.GetPixel(x + v, y + c);
+
+                                    if (pixelColor.A > 0)
+                                    {
+                                        block.Add(pixelColor);
+                                    }
                                 }
                             }
                         }

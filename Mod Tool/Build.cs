@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ModTool.Classes;
+using Newtonsoft.Json;
 using Steamworks;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,9 @@ namespace ModTool
                         break;
                     case ModType.FlappyBirdMode:
                         CompileMode(1, showMessage);
+                        break;
+                    case ModType.ModeVisualScript:
+                        CompileVS(showMessage);
                         break;
                 }
 
@@ -232,5 +236,79 @@ namespace ModTool
                 }
             }      
         }
+
+        private void CompileVS(bool showMessage = true)
+        {
+            string projectFolderPath = FManager.GetProjectFolder(ModID);
+            string projectJsonPath = Path.Combine(projectFolderPath, "project.json");
+
+            if ( File.Exists(projectJsonPath) )
+            {
+                string[] modeJsonFiles = Directory.GetFiles(projectFolderPath, "*.json")
+                                                    .Where(file => file != projectJsonPath)
+                                                    .ToArray();
+
+                List<RenPyNode> renPyNodes = new List<RenPyNode>();
+                foreach (string modeJsonFile in modeJsonFiles)
+                {
+                    if (Path.GetFileNameWithoutExtension(modeJsonFile) == $"{Program.Projects[ModID].Name}_Characters")
+                    {
+                        Dictionary<string, string> customCharacters = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(modeJsonFile));
+
+                        string rpyFileName = $"{Path.GetFileNameWithoutExtension(modeJsonFile)}.rpy";
+                        string rpyFilePath = Path.Combine(projectFolderPath, rpyFileName);
+                        string renPyCode = string.Empty;
+
+                        foreach (var character in customCharacters)
+                        {
+                            renPyCode += $"define {character.Key} = Character(\"{character.Value}\", color=\"#01A2D9\", what_color=\"#01A2D9\"){Environment.NewLine}";
+                        }
+
+                        File.WriteAllText(rpyFilePath, renPyCode);
+                    }
+                    else
+                    {
+                        RenPyNode renPyNode = RenPyNode.LoadFromJson(modeJsonFile);
+
+                        if (renPyNode != null)
+                        {
+                            string rpyFileName = $"{Path.GetFileNameWithoutExtension(modeJsonFile)}.rpy";
+                            string rpyFilePath = Path.Combine(projectFolderPath, rpyFileName);
+
+                            if (Path.GetFileNameWithoutExtension(modeJsonFile) == Program.Projects[ModID].Name)
+                            {
+                                string renPyCode = $"init python:\n    mods['{Program.Projects[ModID].Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_")}'] = \"{Program.Projects[ModID].Name}\"\n\n";
+                                renPyCode += RenPyConverter.ConvertToRenPyCode(renPyNode);
+                                renPyCode += $"    return";
+
+                                File.WriteAllText(rpyFilePath, renPyCode);
+                            }
+                            else
+                            {
+                                string renPyCode = RenPyConverter.ConvertToRenPyCode(renPyNode);
+                                renPyCode += $"    return";
+
+                                File.WriteAllText(rpyFilePath, renPyCode);
+                            }
+                        }
+                    }
+
+                }
+
+                if (showMessage)
+                {
+                    MessageBox.Show(Config.GetText("info_build_success_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                if (showMessage)
+                {
+                    MessageBox.Show(Config.GetText("error_param_none_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new Exception();
+                }
+            }
+        }
+
     }
 }

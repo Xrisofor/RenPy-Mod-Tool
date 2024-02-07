@@ -34,9 +34,9 @@
             this.LanguageComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ScriptEditorComboBox = new System.Windows.Forms.ComboBox();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.label3 = new System.Windows.Forms.Label();
             this.PixelSampleColorMaxNum = new System.Windows.Forms.NumericUpDown();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PixelSampleColorMaxNum)).BeginInit();
             this.SuspendLayout();
@@ -113,10 +113,6 @@
             this.ScriptEditorComboBox.Text = "Internal Editor";
             this.ScriptEditorComboBox.SelectedIndexChanged += new System.EventHandler(this.ScriptEditorComboBox_SelectedIndexChanged);
             // 
-            // openFileDialog
-            // 
-            this.openFileDialog.Filter = "Application|*.exe";
-            // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -157,6 +153,10 @@
             0,
             0});
             this.PixelSampleColorMaxNum.ValueChanged += new System.EventHandler(this.PixelSampleColorMaxNum_ValueChanged);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Filter = "Application|*.exe";
             // 
             // Settings
             // 
