@@ -1,0 +1,33 @@
+{
+  "Mode": 1,
+  "List": [
+    {
+      "Name": "bird",
+      "Texture": 8,
+      "Size": "40x40",
+      "Game": "bird",
+      "SizeEditor": false
+    },
+    {
+      "Name": "pipe_lower",
+      "Texture": 9,
+      "Size": "80x1000",
+      "Game": "pipe_lower",
+      "SizeEditor": true
+    },
+    {
+      "Name": "pipe_upper",
+      "Texture": 10,
+      "Size": "80x1000",
+      "Game": "pipe_upper",
+      "SizeEditor": true
+    },
+    {
+      "Name": "background",
+      "Texture": 11,
+      "Size": "1920x1080",
+      "Game": "background",
+      "SizeEditor": false
+    }
+  ]
+}

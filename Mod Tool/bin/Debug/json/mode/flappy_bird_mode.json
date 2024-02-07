@@ -1,0 +1,41 @@
+{
+  "Mode": 1,
+  "List": [
+    {
+      "Name": "Game Speed",
+      "Default": "0,025",
+      "Game": "game_speed",
+      "Increment": 0.1,
+      "NumberEditor": true,
+      "TextEditor": false,
+      "BoolEditor": false
+    },
+    {
+      "Name": "Score",
+      "Default": "0",
+      "Game": "score",
+      "Increment": 1,
+      "NumberEditor": true,
+      "TextEditor": false,
+      "BoolEditor": false
+    },
+    {
+      "Name": "Pipe Speed",
+      "Default": "30",
+      "Game": "pipe_speed",
+      "Increment": 1,
+      "NumberEditor": true,
+      "TextEditor": false,
+      "BoolEditor": false
+    },
+    {
+      "Name": "Jump Force",
+      "Default": "-15",
+      "Game": "jump_force",
+      "Increment": 1,
+      "NumberEditor": true,
+      "TextEditor": false,
+      "BoolEditor": false
+    }
+  ]
+}

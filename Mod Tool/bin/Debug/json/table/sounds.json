@@ -1,0 +1,22 @@
+{
+    "phone_ringing": "phone_ringing.wav",
+    "picking_up_the_phone": "picking_up_the_phone.wav",
+    "resetting_the_phone_call": "resetting_the_phone_call.wav",
+    "inside_the_train": "inside_the_train.ogg",
+    "punch": "punch.ogg",
+    "opening_the_car_door": "opening_the_car_door.mp3",
+    "closing_the_car_door": "closing_the_car_door.mp3",
+    "car_starting_and_driving_away": "car_starting_and_driving_away.mp3",
+    "crowd": "crowd.mp3",
+    "asphalt_boot_walk_slow_close": "asphalt_boot_walk_slow_close.mp3",
+    "street_cars": "street_cars.mp3",
+    "phone_buzzer": "phone_buzzer.ogg",
+    "shaker": "shaker.wav",
+    "soothe_through_air": "soothe_through_air.mp3",
+    "snake_ambience": "snake_ambience.ogg",
+    "locking_door_with_bunch_keys": "locking_door_with_bunch_keys.wav",
+    "locking_door_with_handle_gkoclrnd": "locking_door_with_handle_gkoclrnd.wav",
+    "phone_send_text": "phone_send_text.ogg",
+    "phone_receive_text": "phone_receive_text.ogg",
+    "cupboard_door": "cupboard_door.wav"
+}
