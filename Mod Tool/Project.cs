@@ -26,10 +26,6 @@ namespace ModTool
 
         public IList<string> Tags { get; set; } = new List<string>();
 
-        public string SpriteManager { get; set; }
-        public string AudioManager { get; set; }
-        public string VideoManager { get; set; }
-
         public Project(string name, ModType type)
         {
             Name = name; Type = type;
@@ -56,13 +52,6 @@ namespace ModTool
                 case ModType.FlappyBirdMode:
                     Tags.Add("New Flappy Bird Mode");
                     break;
-
-                default:
-                    SpriteManager = $@"..\game\mods\{name}\image\sprites.json";
-                    AudioManager = $@"..\game\mods\{name}\audio\audios.json";
-                    VideoManager = $@"..\game\mods\{name}\video\videos.json";
-                    break;
-
             }
         }
     }

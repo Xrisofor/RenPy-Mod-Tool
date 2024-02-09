@@ -1,1 +1,29 @@
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\bin\Release\mod tool.exe.config
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\bin\Release\mod tool.exe
 C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\Mod Tool.csproj.AssemblyReference.cache
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\Interop.WMPLib.dll
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\Mod Tool.csproj.ResolveComReference.cache
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.AddProject.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.Editor.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.Explorer.Pixelation.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.Explorer.Rpa_Explorer.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.GameSpTag.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.GameResourceTable.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.Main.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.NewLabel.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.NewCharacterVS.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.NewContentVS.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.NewObjectVS.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.Panel.Mode.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.Panel.RenPyScript.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.Panel.Skin.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.Panel.VisualScript.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.Settings.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.SplashScreen.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Forms.TagsEditor.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Properties.Resources.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\ModTool.Resources.Resource_RPA.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\Mod Tool.csproj.GenerateResource.cache
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\Mod Tool.csproj.CoreCompileInputs.cache
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\Mod Tool.csproj.Fody.CopyLocal.cache
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Release\mod tool.exe

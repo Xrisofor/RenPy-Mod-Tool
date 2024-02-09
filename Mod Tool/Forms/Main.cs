@@ -113,22 +113,17 @@ namespace ModTool.Forms
                         Directory.CreateDirectory($@"{FManager.GetProjectFolder(project)}\image");
                         break;
 
-                    case ModType.SnakeMode:
-                        break;
-
-                    case ModType.FlappyBirdMode:
-                        break;
+                    case ModType.SnakeMode: break;
+                    case ModType.FlappyBirdMode: break;
+                    case ModType.ModeVisualScript: break;
 
                     case ModType.ModRenPy:
                         var rpaFile = File.ReadAllText($@"{FManager.GetExampleFolder()}\base.rpy");
 
-                        rpaFile = rpaFile.Replace("{label}", project.Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_"));
+                        rpaFile = rpaFile.Replace("{label}", StringExtension.CyrilicToLatin( project.Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_") ));
                         rpaFile = rpaFile.Replace("{name}", project.Name);
 
-                        File.WriteAllText($@"{FManager.GetProjectFolder(project)}\{project.Name}.rpy", rpaFile);
-                        break;
-
-                    case ModType.ModeVisualScript:
+                        File.WriteAllText($@"{FManager.GetProjectFolder(project)}\{StringExtension.CyrilicToLatin(project.Name)}.rpy", rpaFile);
                         break;
 
                     default:

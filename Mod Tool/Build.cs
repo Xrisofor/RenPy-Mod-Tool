@@ -275,9 +275,9 @@ namespace ModTool
                             string rpyFileName = $"{Path.GetFileNameWithoutExtension(modeJsonFile)}.rpy";
                             string rpyFilePath = Path.Combine(projectFolderPath, rpyFileName);
 
-                            if (Path.GetFileNameWithoutExtension(modeJsonFile) == Program.Projects[ModID].Name)
+                            if (Path.GetFileNameWithoutExtension(modeJsonFile) == StringExtension.CyrilicToLatin(Program.Projects[ModID].Name))
                             {
-                                string renPyCode = $"init python:\n    mods['{Program.Projects[ModID].Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_")}'] = \"{Program.Projects[ModID].Name}\"\n\n";
+                                string renPyCode = $"init python:\n    mods['{StringExtension.CyrilicToLatin( Program.Projects[ModID].Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_") )}'] = \"{Program.Projects[ModID].Name}\"\n\n";
                                 renPyCode += RenPyConverter.ConvertToRenPyCode(renPyNode);
                                 renPyCode += $"    return";
 

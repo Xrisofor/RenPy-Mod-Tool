@@ -3,7 +3,6 @@ using System;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
-using System.Linq;
 
 namespace ModTool.Forms.Panel
 {
@@ -11,14 +10,9 @@ namespace ModTool.Forms.Panel
     {
         private int ModID; private bool isMainFile = true; private string openFileName, convertFileName;
 
-        private RenPyTreeNode rootTreeNode; private static Random random = new Random();
+        private RenPyTreeNode rootTreeNode; 
 
-        public static string RandomString(int length)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            return new string(Enumerable.Repeat(chars, length)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
+        
 
         public VisualScript(int ModID)
         {
@@ -27,16 +21,16 @@ namespace ModTool.Forms.Panel
 
             ScriptTreeView.Nodes.Clear();
 
-            if( File.Exists($"{FManager.GetProjectFolder(ModID)}/{Program.Projects[ModID].Name}.json") )
-                rootTreeNode = new RenPyTreeNode(RenPyNode.LoadFromJson($"{FManager.GetProjectFolder(ModID)}/{Program.Projects[ModID].Name}.json"));
+            if( File.Exists($"{FManager.GetProjectFolder(ModID)}/{StringExtension.CyrilicToLatin(Program.Projects[ModID].Name)}.json") )
+                rootTreeNode = new RenPyTreeNode(RenPyNode.LoadFromJson($"{FManager.GetProjectFolder(ModID)}/{StringExtension.CyrilicToLatin(Program.Projects[ModID].Name)}.json"));
             else
             {
-                RenPyNode rootNode = new RenPyNode("label", Program.Projects[ModID].Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_"));
+                RenPyNode rootNode = new RenPyNode("label", StringExtension.CyrilicToLatin( Program.Projects[ModID].Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_") ));
                 rootTreeNode = new RenPyTreeNode(rootNode);
             }
 
-            openFileName = $"{FManager.GetProjectFolder(ModID)}/{Program.Projects[ModID].Name}.json";
-            convertFileName = $"{FManager.GetProjectFolder(ModID)}/{Program.Projects[ModID].Name}.rpy";
+            openFileName = $"{FManager.GetProjectFolder(ModID)}/{StringExtension.CyrilicToLatin(Program.Projects[ModID].Name)}.json";
+            convertFileName = $"{FManager.GetProjectFolder(ModID)}/{StringExtension.CyrilicToLatin(Program.Projects[ModID].Name)}.rpy";
 
             ScriptTreeView.Nodes.Add(rootTreeNode);
 
@@ -135,7 +129,7 @@ namespace ModTool.Forms.Panel
         {
             if (isMainFile)
             {
-                string convertRpy = $"init python:\n    mods['{Program.Projects[ModID].Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_")}'] = \"{Program.Projects[ModID].Name}\"\n\n";
+                string convertRpy = $"init python:\n    mods['{StringExtension.CyrilicToLatin( Program.Projects[ModID].Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_") )}'] = \"{Program.Projects[ModID].Name}\"\n\n";
                 convertRpy += RenPyConverter.ConvertToRenPyCode(rootTreeNode.RenPyNode);
                 convertRpy += $"    return";
 
@@ -188,12 +182,17 @@ namespace ModTool.Forms.Panel
                         editToolStripMenuItem.Enabled = true;
                         removeToolStripMenuItem.Enabled = true;
                     }
+
+                    upToolStripMenuItem.Enabled = true;
+                    downToolStripMenuItem.Enabled = true;
                 }
                 else
                 {
                     editToolStripMenuItem.Enabled = false;
                     removeToolStripMenuItem.Enabled = false;
                     addToolStripMenuItem.Enabled = true;
+                    upToolStripMenuItem.Enabled = false;
+                    downToolStripMenuItem.Enabled= false;
                 }
 
             }
@@ -225,7 +224,7 @@ namespace ModTool.Forms.Panel
         {
             if (ScriptTreeView.SelectedNode.Text.StartsWith("menu", StringComparison.OrdinalIgnoreCase))
             {
-                string randomStr = RandomString(20);
+                string randomStr = StringExtension.RandomString(20);
 
                 RenPyNode rootNode = rootTreeNode.RenPyNode.Children[ScriptTreeView.SelectedNode.Index];
                 NewObjectVS newObjectVS = new NewObjectVS(ModID, true);
@@ -312,15 +311,15 @@ namespace ModTool.Forms.Panel
 
             if (rpySaveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                RenPyNode newFileNode = new RenPyNode("label", Path.GetFileNameWithoutExtension(rpySaveFileDialog.FileName).ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_"));
-                newFileNode.SaveToJson(rpySaveFileDialog.FileName);
+                RenPyNode newFileNode = new RenPyNode("label", StringExtension.CyrilicToLatin( Path.GetFileNameWithoutExtension(rpySaveFileDialog.FileName).ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_") ));
+                newFileNode.SaveToJson($@"{Path.GetDirectoryName(rpySaveFileDialog.FileName)}/{Path.GetFileName(StringExtension.CyrilicToLatin(rpySaveFileDialog.FileName))}");
                 
                 isMainFile = false;
 
-                RenPyNode loadedNode = RenPyNode.LoadFromJson(rpySaveFileDialog.FileName);
+                RenPyNode loadedNode = RenPyNode.LoadFromJson($@"{Path.GetDirectoryName(rpySaveFileDialog.FileName)}/{Path.GetFileName(StringExtension.CyrilicToLatin(rpySaveFileDialog.FileName))}");
 
-                openFileName = rpySaveFileDialog.FileName;
-                convertFileName = $"{FManager.GetProjectFolder(ModID)}/{Path.GetFileNameWithoutExtension(rpySaveFileDialog.FileName)}.rpy";
+                openFileName = $@"{Path.GetDirectoryName(rpySaveFileDialog.FileName)}/{Path.GetFileName(StringExtension.CyrilicToLatin(rpySaveFileDialog.FileName))}";
+                convertFileName = $"{FManager.GetProjectFolder(ModID)}/{Path.GetFileNameWithoutExtension( StringExtension.CyrilicToLatin(rpySaveFileDialog.FileName) )}.rpy";
 
                 if (loadedNode != null)
                 {
@@ -358,13 +357,19 @@ namespace ModTool.Forms.Panel
             newCharacterVS.Show();
         }
 
+        private void AddContentButton_Click(object sender, EventArgs e)
+        {
+            NewContentVS newContentVS = new NewContentVS(ModID);
+            newContentVS.Show();
+        }
+
         private void OpenFileButton_Click(object sender, EventArgs e)
         {
             rpyOpenFileDialog.InitialDirectory = FManager.GetProjectFolder(ModID);
 
             if (rpyOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (Path.GetFileNameWithoutExtension(rpyOpenFileDialog.FileName) == Program.Projects[ModID].Name)
+                if (Path.GetFileNameWithoutExtension(rpyOpenFileDialog.FileName) == StringExtension.CyrilicToLatin(Program.Projects[ModID].Name))
                     isMainFile = true;
                 else if (Path.GetFileNameWithoutExtension(rpyOpenFileDialog.FileName) == "project")
                 {

@@ -37,3 +37,4 @@ C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Debug\ModT
 C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Debug\ModTool.Forms.Explorer.Pixelation.resources
 C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Debug\ModTool.Forms.SplashScreen.resources
 C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Debug\ModTool.Forms.NewCharacterVS.resources
+C:\Users\arabo\Documents\Visual Studio 2022\Mod Tool New\Mod Tool\obj\Debug\ModTool.Forms.NewContentVS.resources

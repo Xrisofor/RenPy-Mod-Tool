@@ -50,6 +50,7 @@
             this.NewFileButton = new System.Windows.Forms.Button();
             this.rpyOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.rpySaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.AddContentButton = new System.Windows.Forms.Button();
             this.ScriptContextMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -157,9 +158,10 @@
             this.panel1.Controls.Add(this.AddCharacterButton);
             this.panel1.Controls.Add(this.SaveButton);
             this.panel1.Controls.Add(this.OpenFileButton);
-            this.panel1.Controls.Add(this.TableButton);
             this.panel1.Controls.Add(this.NewLabelButtom);
             this.panel1.Controls.Add(this.NewFileButton);
+            this.panel1.Controls.Add(this.AddContentButton);
+            this.panel1.Controls.Add(this.TableButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(942, 0);
             this.panel1.Name = "panel1";
@@ -173,7 +175,7 @@
             this.RpyExportButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.RpyExportButton.FlatAppearance.BorderSize = 0;
             this.RpyExportButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RpyExportButton.Location = new System.Drawing.Point(0, 575);
+            this.RpyExportButton.Location = new System.Drawing.Point(0, 543);
             this.RpyExportButton.Name = "RpyExportButton";
             this.RpyExportButton.Size = new System.Drawing.Size(30, 32);
             this.RpyExportButton.TabIndex = 7;
@@ -187,7 +189,7 @@
             this.AddCharacterButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddCharacterButton.FlatAppearance.BorderSize = 0;
             this.AddCharacterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddCharacterButton.Location = new System.Drawing.Point(0, 607);
+            this.AddCharacterButton.Location = new System.Drawing.Point(0, 575);
             this.AddCharacterButton.Name = "AddCharacterButton";
             this.AddCharacterButton.Size = new System.Drawing.Size(30, 32);
             this.AddCharacterButton.TabIndex = 9;
@@ -272,6 +274,20 @@
             // 
             this.rpySaveFileDialog.Filter = "Visual Node|*.json";
             // 
+            // AddContentButton
+            // 
+            this.AddContentButton.BackgroundImage = global::ModTool.Properties.Resources.paint;
+            this.AddContentButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.AddContentButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.AddContentButton.FlatAppearance.BorderSize = 0;
+            this.AddContentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddContentButton.Location = new System.Drawing.Point(0, 607);
+            this.AddContentButton.Name = "AddContentButton";
+            this.AddContentButton.Size = new System.Drawing.Size(30, 32);
+            this.AddContentButton.TabIndex = 11;
+            this.AddContentButton.UseVisualStyleBackColor = true;
+            this.AddContentButton.Click += new System.EventHandler(this.AddContentButton_Click);
+            // 
             // VisualScript
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -310,5 +326,6 @@
         private System.Windows.Forms.SaveFileDialog rpySaveFileDialog;
         private System.Windows.Forms.ToolStripMenuItem upToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downToolStripMenuItem;
+        private System.Windows.Forms.Button AddContentButton;
     }
 }

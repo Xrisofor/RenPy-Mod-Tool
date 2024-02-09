@@ -30,13 +30,17 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>true</Prefer32Bit>
+    <AllowedReferenceRelatedFileExtensions>
+      *.pdb;
+      *.xml
+    </AllowedReferenceRelatedFileExtensions>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>ModTool.Program</StartupObject>
@@ -257,6 +261,7 @@
     <Compile Include="Classes\Item.cs" />
     <Compile Include="Classes\Mode.cs" />
     <Compile Include="Classes\Skin.cs" />
+    <Compile Include="Classes\StringExtension.cs" />
     <Compile Include="Classes\VisualScript.cs" />
     <Compile Include="Classes\Workshop_Struct.cs" />
     <Compile Include="Config.cs" />
@@ -316,6 +321,12 @@
     <Compile Include="Forms\Visual Node\NewCharacterVS.Designer.cs">
       <DependentUpon>NewCharacterVS.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Visual Node\NewContentVS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Visual Node\NewContentVS.Designer.cs">
+      <DependentUpon>NewContentVS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Visual Node\NewObjectVS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -357,12 +368,6 @@
     </Compile>
     <Compile Include="Forms\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SpriteManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SpriteManager.Designer.cs">
-      <DependentUpon>SpriteManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\TagsEditor.cs">
       <SubType>Form</SubType>
@@ -407,6 +412,9 @@
     <EmbeddedResource Include="Forms\Visual Node\NewCharacterVS.resx">
       <DependentUpon>NewCharacterVS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Visual Node\NewContentVS.resx">
+      <DependentUpon>NewContentVS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Visual Node\NewObjectVS.resx">
       <DependentUpon>NewObjectVS.cs</DependentUpon>
     </EmbeddedResource>
@@ -427,9 +435,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SpriteManager.resx">
-      <DependentUpon>SpriteManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TagsEditor.resx">
       <DependentUpon>TagsEditor.cs</DependentUpon>
@@ -546,6 +551,9 @@
     <Error Condition="!Exists('..\packages\Fody.6.5.5\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.5.5\build\Fody.targets'))" />
     <Error Condition="!Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props'))" />
     <Error Condition="!Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets'))" />
+  </Target>
+  <Target Name="AfterClean">
+    <Delete Files="$(TargetDir)\*.xml" />
   </Target>
   <Import Project="..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets')" />
 </Project>

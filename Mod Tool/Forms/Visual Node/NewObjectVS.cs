@@ -141,23 +141,62 @@ namespace ModTool.Forms
                 case VSObject.show:
                     additionallyComboBox.Enabled = true;
                     textBox1.Enabled = false;
+                    List<string> showImages = new List<string>();
+
+                    if (Directory.Exists($@"{FManager.GetProjectFolder(ModID)}/content"))
+                    {
+                        string[] files = Directory.GetFiles($@"{FManager.GetProjectFolder(ModID)}/content");
+                        foreach (string file in files)
+                        {
+                            if (NewContentVS.GetImageIndex(file) == 1)
+                                showImages.Add(StringExtension.CyrilicToLatin(Path.GetFileNameWithoutExtension(file)));
+                        }
+                    }
 
                     Dictionary<string, string> imgShowStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\sprites.json"));
-                    additionallyComboBox.DataSource = imgShowStrings.Keys.ToArray();
+                    showImages.AddRange( imgShowStrings.Keys );
+
+                    additionallyComboBox.DataSource = showImages;
                     break;
                 case VSObject.hide:
                     additionallyComboBox.Enabled = true;
                     textBox1.Enabled = false;
+                    List<string> hideImages = new List<string>();
+
+                    if (Directory.Exists($@"{FManager.GetProjectFolder(ModID)}/content"))
+                    {
+                        string[] files = Directory.GetFiles($@"{FManager.GetProjectFolder(ModID)}/content");
+                        foreach (string file in files)
+                        {
+                            if (NewContentVS.GetImageIndex(file) == 1)
+                                hideImages.Add(StringExtension.CyrilicToLatin(Path.GetFileNameWithoutExtension(file)));
+                        }
+                    }
 
                     Dictionary<string, string> imgHideStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\sprites.json"));
-                    additionallyComboBox.DataSource = imgHideStrings.Keys.ToArray();
+                    hideImages.AddRange(imgHideStrings.Keys);
+
+                    additionallyComboBox.DataSource = hideImages;
                     break;
                 case VSObject.scene:
                     additionallyComboBox.Enabled = true;
                     textBox1.Enabled = false;
+                    List<string> sceneImages = new List<string>();
 
-                    Dictionary <string, string> backgroundStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\backgrounds.json"));
-                    additionallyComboBox.DataSource = backgroundStrings.Keys.ToArray();
+                    if (Directory.Exists($@"{FManager.GetProjectFolder(ModID)}/content"))
+                    {
+                        string[] files = Directory.GetFiles($@"{FManager.GetProjectFolder(ModID)}/content");
+                        foreach (string file in files)
+                        {
+                            if (NewContentVS.GetImageIndex(file) == 1)
+                                sceneImages.Add(StringExtension.CyrilicToLatin(Path.GetFileNameWithoutExtension(file)));
+                        }
+                    }
+
+                    Dictionary<string, string> backgroundStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\backgrounds.json"));
+                    sceneImages.AddRange(backgroundStrings.Keys);
+
+                    additionallyComboBox.DataSource = sceneImages;
                     break;
                 case VSObject.with:
                     additionallyComboBox.Enabled = true;
@@ -171,16 +210,42 @@ namespace ModTool.Forms
                 case VSObject.play_sound:
                     additionallyComboBox.Enabled = true;
                     textBox1.Enabled = false;
+                    List<string> soundList = new List<string>();
+
+                    if (Directory.Exists($@"{FManager.GetProjectFolder(ModID)}/content"))
+                    {
+                        string[] files = Directory.GetFiles($@"{FManager.GetProjectFolder(ModID)}/content");
+                        foreach (string file in files)
+                        {
+                            if (NewContentVS.GetImageIndex(file) == 0)
+                                soundList.Add(StringExtension.CyrilicToLatin( Path.GetFileNameWithoutExtension(file).ToLower().Replace(" ", "_").Replace(",", "_").Replace("-", "_").Replace(".", "_") ));
+                        }
+                    }
 
                     Dictionary<string, string> audioStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\sounds.json"));
-                    additionallyComboBox.DataSource = audioStrings.Keys.ToArray();
+                    soundList.AddRange(audioStrings.Keys);
+
+                    additionallyComboBox.DataSource = soundList;
                     break;
                 case VSObject.play_music:
                     additionallyComboBox.Enabled = true;
                     textBox1.Enabled = false;
+                    List<string> musicList = new List<string>();
+
+                    if (Directory.Exists($@"{FManager.GetProjectFolder(ModID)}/content"))
+                    {
+                        string[] files = Directory.GetFiles($@"{FManager.GetProjectFolder(ModID)}/content");
+                        foreach (string file in files)
+                        {
+                            if (NewContentVS.GetImageIndex(file) == 0)
+                                musicList.Add(StringExtension.CyrilicToLatin( Path.GetFileNameWithoutExtension(file).ToLower().Replace(" ", "_").Replace(",", "_").Replace("-", "_").Replace(".", "_") ));
+                        }
+                    }
 
                     Dictionary<string, string> musicStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\musics.json"));
-                    additionallyComboBox.DataSource = musicStrings.Keys.ToArray();
+                    musicList.AddRange(musicStrings.Keys);
+
+                    additionallyComboBox.DataSource = musicList;
                     break;
                 case VSObject.stop:
                     additionallyComboBox.Enabled = true;

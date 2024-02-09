@@ -141,11 +141,11 @@ namespace ModTool.Classes
                         sb.AppendLine($"{indentation}\"{node.Content}\"");
                     break;
 
-                case "play_sound":
+                case "play sound":
                     sb.AppendLine($"{indentation}play sound sound_list[\"{node.Content}\"]");
                     break;
 
-                case "play_music":
+                case "play music":
                     sb.AppendLine($"{indentation}play music music_list[\"{node.Content}\"]");
                     break;
 
