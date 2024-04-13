@@ -1,4 +1,5 @@
 <h1 align="center">RenPy Mod Tool</h1>
+<h3 align="center">RePy Mod Tool is a small program for creating modifications and then uploading them to Steam Workshop. It is currently under active development, and its source code is immediately customized for a novel like <a href="https://store.steampowered.com/app/1595380/The_Durka/">"The Durka: You will (not) die"</a>.</h3>
 <h5 align="center">BETA</h5>
 
 ---
