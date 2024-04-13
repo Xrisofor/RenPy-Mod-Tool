@@ -1,0 +1,54 @@
+[
+    {
+        "ID": 0,
+        "Path": "resources/snake_up.png"
+    },
+    {
+        "ID": 1,
+        "Path": "resources/snake_right.png"
+    },
+    {
+        "ID": 2,
+        "Path": "resources/snake_down.png"
+    },
+    {
+        "ID": 3,
+        "Path": "resources/snake_left.png"
+    },
+    {
+        "ID": 4,
+        "Path": "resources/snake_body.png"
+    },
+    {
+        "ID": 5,
+        "Path": "resources/snake_apple.png"
+    },
+    {
+        "ID": 6,
+        "Path": "resources/snake_poisoned_apple.png"
+    },
+    {
+        "ID": 7,
+        "Path": "resources/snake_bg.jpg"
+    },
+    {
+        "ID": 8,
+        "Path": "resources/bird.png"
+    },
+    {
+        "ID": 9,
+        "Path": "resources/pipe_lower.png"
+    },
+    {
+        "ID": 10,
+        "Path": "resources/pipe_upper.png"
+    },
+    {
+        "ID": 11,
+        "Path": "resources/fbird_background.jpg"
+    },
+    {
+        "ID": 12,
+        "Path": "resources/bird_anim1.png"
+    }
+]

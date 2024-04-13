@@ -9,10 +9,6 @@ namespace ModTool
     {
         public static List<Project> Projects = new List<Project>();
 
-        public static List<Item> Sprites { get; private set; } = new List<Item>();
-        public static List<Item> Audio { get; private set; } = new List<Item>();
-
-
         [STAThread]
         public static void Main()
         {

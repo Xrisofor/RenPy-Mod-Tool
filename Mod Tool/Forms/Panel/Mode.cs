@@ -3,14 +3,12 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace ModTool.Forms.Panel
 {
     public partial class Mode : Form
     {
         private int ModID, ID, EditorType = -1;
-        private bool isUserChanging = false;
 
         private List<Classes.ModG> Modes = new List<Classes.ModG>();
         private Dictionary<string, string> UserParam = new Dictionary<string, string>();

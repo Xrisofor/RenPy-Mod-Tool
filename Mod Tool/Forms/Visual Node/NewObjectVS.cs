@@ -67,7 +67,7 @@ namespace ModTool.Forms
 
         public void EditItem(RenPyNode node)
         {
-            Editing = true;
+            Editing = true; Text = Config.GetText("edit_visual_object_title");
             VSObject[] enumValues = (VSObject[])Enum.GetValues(typeof(VSObject));
             SelectedEnum = (VSObject)Enum.Parse(typeof(VSObject), node.Type);
 
@@ -78,24 +78,16 @@ namespace ModTool.Forms
             switch (SelectedEnum)
             {
                 case VSObject.say:
-                    additionallyComboBox.SelectedItem = node.Character;
+                    try { additionallyComboBox.SelectedItem = node.Character; }
+                    catch { additionallyComboBox.SelectedItem = "none"; }
                     textBox1.Text = node.Content;
                     break;
+
                 case VSObject.jump:
-                    textBox1.Text = node.Content;
-                    break;
                 case VSObject.comment:
-                    textBox1.Text = node.Content;
-                    break;
                 case VSObject.pause:
-                    textBox1.Text = node.Content;
-                    break;
                 case VSObject.discord:
-                    textBox1.Text = node.Content;
-                    break;
                 case VSObject.snake_game:
-                    textBox1.Text = node.Content;
-                    break;
                 case VSObject.flappy_bird_game:
                     textBox1.Text = node.Content;
                     break;
@@ -141,23 +133,62 @@ namespace ModTool.Forms
                 case VSObject.show:
                     additionallyComboBox.Enabled = true;
                     textBox1.Enabled = false;
+                    List<string> showImages = new List<string>();
+
+                    if (Directory.Exists($@"{FManager.GetProjectFolder(ModID)}/content"))
+                    {
+                        string[] files = Directory.GetFiles($@"{FManager.GetProjectFolder(ModID)}/content");
+                        foreach (string file in files)
+                        {
+                            if (NewContentVS.GetImageIndex(file) == 1)
+                                showImages.Add(StringExtension.CyrilicToLatin(Path.GetFileNameWithoutExtension(file)));
+                        }
+                    }
 
                     Dictionary<string, string> imgShowStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\sprites.json"));
-                    additionallyComboBox.DataSource = imgShowStrings.Keys.ToArray();
+                    showImages.AddRange( imgShowStrings.Keys );
+
+                    additionallyComboBox.DataSource = showImages;
                     break;
                 case VSObject.hide:
                     additionallyComboBox.Enabled = true;
                     textBox1.Enabled = false;
+                    List<string> hideImages = new List<string>();
+
+                    if (Directory.Exists($@"{FManager.GetProjectFolder(ModID)}/content"))
+                    {
+                        string[] files = Directory.GetFiles($@"{FManager.GetProjectFolder(ModID)}/content");
+                        foreach (string file in files)
+                        {
+                            if (NewContentVS.GetImageIndex(file) == 1)
+                                hideImages.Add(StringExtension.CyrilicToLatin(Path.GetFileNameWithoutExtension(file)));
+                        }
+                    }
 
                     Dictionary<string, string> imgHideStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\sprites.json"));
-                    additionallyComboBox.DataSource = imgHideStrings.Keys.ToArray();
+                    hideImages.AddRange(imgHideStrings.Keys);
+
+                    additionallyComboBox.DataSource = hideImages;
                     break;
                 case VSObject.scene:
                     additionallyComboBox.Enabled = true;
                     textBox1.Enabled = false;
+                    List<string> sceneImages = new List<string>();
 
-                    Dictionary <string, string> backgroundStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\backgrounds.json"));
-                    additionallyComboBox.DataSource = backgroundStrings.Keys.ToArray();
+                    if (Directory.Exists($@"{FManager.GetProjectFolder(ModID)}/content"))
+                    {
+                        string[] files = Directory.GetFiles($@"{FManager.GetProjectFolder(ModID)}/content");
+                        foreach (string file in files)
+                        {
+                            if (NewContentVS.GetImageIndex(file) == 1)
+                                sceneImages.Add(StringExtension.CyrilicToLatin(Path.GetFileNameWithoutExtension(file)));
+                        }
+                    }
+
+                    Dictionary<string, string> backgroundStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\backgrounds.json"));
+                    sceneImages.AddRange(backgroundStrings.Keys);
+
+                    additionallyComboBox.DataSource = sceneImages;
                     break;
                 case VSObject.with:
                     additionallyComboBox.Enabled = true;
@@ -171,16 +202,42 @@ namespace ModTool.Forms
                 case VSObject.play_sound:
                     additionallyComboBox.Enabled = true;
                     textBox1.Enabled = false;
+                    List<string> soundList = new List<string>();
+
+                    if (Directory.Exists($@"{FManager.GetProjectFolder(ModID)}/content"))
+                    {
+                        string[] files = Directory.GetFiles($@"{FManager.GetProjectFolder(ModID)}/content");
+                        foreach (string file in files)
+                        {
+                            if (NewContentVS.GetImageIndex(file) == 0)
+                                soundList.Add(StringExtension.CyrilicToLatin( Path.GetFileNameWithoutExtension(file).ToLower().Replace(" ", "_").Replace(",", "_").Replace("-", "_").Replace(".", "_") ));
+                        }
+                    }
 
                     Dictionary<string, string> audioStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\sounds.json"));
-                    additionallyComboBox.DataSource = audioStrings.Keys.ToArray();
+                    soundList.AddRange(audioStrings.Keys);
+
+                    additionallyComboBox.DataSource = soundList;
                     break;
                 case VSObject.play_music:
                     additionallyComboBox.Enabled = true;
                     textBox1.Enabled = false;
+                    List<string> musicList = new List<string>();
+
+                    if (Directory.Exists($@"{FManager.GetProjectFolder(ModID)}/content"))
+                    {
+                        string[] files = Directory.GetFiles($@"{FManager.GetProjectFolder(ModID)}/content");
+                        foreach (string file in files)
+                        {
+                            if (NewContentVS.GetImageIndex(file) == 0)
+                                musicList.Add(StringExtension.CyrilicToLatin( Path.GetFileNameWithoutExtension(file).ToLower().Replace(" ", "_").Replace(",", "_").Replace("-", "_").Replace(".", "_") ));
+                        }
+                    }
 
                     Dictionary<string, string> musicStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\musics.json"));
-                    additionallyComboBox.DataSource = musicStrings.Keys.ToArray();
+                    musicList.AddRange(musicStrings.Keys);
+
+                    additionallyComboBox.DataSource = musicList;
                     break;
                 case VSObject.stop:
                     additionallyComboBox.Enabled = true;
@@ -200,21 +257,15 @@ namespace ModTool.Forms
         {
             switch(SelectedEnum)
             {
-                case VSObject.show: DialogResult = DialogResult.OK; break;
-
-                case VSObject.hide: DialogResult = DialogResult.OK; break;
-
-                case VSObject.scene: DialogResult = DialogResult.OK; break;
-
-                case VSObject.play_music: DialogResult = DialogResult.OK; break;
-
-                case VSObject.play_sound: DialogResult = DialogResult.OK; break;
-
-                case VSObject.stop: DialogResult = DialogResult.OK; break;
-
-                case VSObject.with: DialogResult = DialogResult.OK; break;
-
-                case VSObject.menu: DialogResult = DialogResult.OK; break;
+                case VSObject.show:
+                case VSObject.hide:
+                case VSObject.scene:
+                case VSObject.play_music:
+                case VSObject.play_sound:
+                case VSObject.stop:
+                case VSObject.with:
+                case VSObject.menu:
+                    DialogResult = DialogResult.OK; break;
 
                 default:
 
@@ -239,32 +290,12 @@ namespace ModTool.Forms
             switch (SelectedEnum)
             {
                 case VSObject.say:
-                    AdditionallyEnum = additionallyComboBox.Items[additionallyComboBox.SelectedIndex];
-                    break;
-
                 case VSObject.show:
-                    AdditionallyEnum = additionallyComboBox.Items[additionallyComboBox.SelectedIndex];
-                    break;
                 case VSObject.hide:
-                    AdditionallyEnum = additionallyComboBox.Items[additionallyComboBox.SelectedIndex];
-                    break;
-
                 case VSObject.scene:
-                    AdditionallyEnum = additionallyComboBox.Items[additionallyComboBox.SelectedIndex];
-                    break;
-
                 case VSObject.play_music:
-                    AdditionallyEnum = additionallyComboBox.Items[additionallyComboBox.SelectedIndex];
-                    break;
-
                 case VSObject.play_sound:
-                    AdditionallyEnum = additionallyComboBox.Items[additionallyComboBox.SelectedIndex];
-                    break;
-
                 case VSObject.stop:
-                    AdditionallyEnum = additionallyComboBox.Items[additionallyComboBox.SelectedIndex];
-                    break;
-
                 case VSObject.with:
                     AdditionallyEnum = additionallyComboBox.Items[additionallyComboBox.SelectedIndex];
                     break;

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ModTool.Forms
@@ -39,7 +40,7 @@ namespace ModTool.Forms
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItems[0] != null)
+            if (listBox1.SelectedItems.Count != 0)
             {
                 button3.Enabled = true;
                 button2.Enabled = true;
@@ -57,16 +58,23 @@ namespace ModTool.Forms
         {
             try
             {
-                customCharacters.Add(textBox1.Text, textBox2.Text);
-                textBox1.Text = string.Empty; textBox2.Text = string.Empty;
-
-                listBox1.Items.Clear();
-                foreach (var cusChar in customCharacters) 
+                if (textBox1.Text != string.Empty && textBox2.Text != string.Empty)
                 {
-                    listBox1.Items.Add($"{cusChar.Key} = {cusChar.Value}");
-                }
+                    string cleanedText = Regex.Replace(textBox1.Text, @"[^\w\s]", "").Replace(" ", "_");
 
-                saveCharactersFile();
+                    customCharacters.Add(cleanedText, textBox2.Text);
+                    textBox1.Text = string.Empty; textBox2.Text = string.Empty;
+
+                    listBox1.Items.Clear();
+                    foreach (var cusChar in customCharacters)
+                    {
+                        listBox1.Items.Add($"{cusChar.Key} = {cusChar.Value}");
+                    }
+
+                    saveCharactersFile();
+                }
+                else
+                    MessageBox.Show(Config.GetText("error_text_none_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch
             {

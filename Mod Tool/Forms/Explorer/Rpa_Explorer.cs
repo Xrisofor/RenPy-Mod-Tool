@@ -399,6 +399,14 @@ namespace ModTool.Forms.Explorer
             Text = Config.GetText("rpa_explorer_title");
             label1.Text = Config.GetText("rpa_explorer_not_supported");
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (videoView1.MediaPlayer.IsPlaying)
+                videoView1.MediaPlayer.SetPause(true);
+            else
+                videoView1.MediaPlayer.SetPause(false);
+        }
     }
 
     public static class CrossThreadExtensions

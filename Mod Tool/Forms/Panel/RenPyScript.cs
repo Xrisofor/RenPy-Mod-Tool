@@ -26,7 +26,7 @@ namespace ModTool.Forms.Panel
             InitializeComponent();
 
             this.ModID = ModID;
-            this.OpenFilePath = openFilePath;
+            this.OpenFilePath = $@"{Path.GetDirectoryName(openFilePath)}/{Path.GetFileName(StringExtension.CyrilicToLatin(openFilePath))}";
 
             fastColoredTextBox1.Text = File.ReadAllText(OpenFilePath);
             RunFileFromProgram(openFilePath);
@@ -118,7 +118,7 @@ namespace ModTool.Forms.Panel
         {
             if (rpySaveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                OpenFilePath = rpySaveFileDialog.FileName;
+                OpenFilePath = $@"{Path.GetDirectoryName(rpySaveFileDialog.FileName)}/{Path.GetFileName(StringExtension.CyrilicToLatin(rpySaveFileDialog.FileName))}";
                 File.Create(OpenFilePath).Close();
                 fastColoredTextBox1.Clear();
                 RunFileFromProgram(OpenFilePath);

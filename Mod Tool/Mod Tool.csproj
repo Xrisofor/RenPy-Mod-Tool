@@ -30,13 +30,17 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>true</Prefer32Bit>
+    <AllowedReferenceRelatedFileExtensions>
+      *.pdb;
+      *.xml
+    </AllowedReferenceRelatedFileExtensions>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>ModTool.Program</StartupObject>
@@ -55,6 +59,9 @@
     <Reference Include="Costura, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.5.7.0\lib\netstandard1.0\Costura.dll</HintPath>
     </Reference>
+    <Reference Include="DynamicData, Version=7.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DynamicData.7.1.1\lib\net461\DynamicData.dll</HintPath>
+    </Reference>
     <Reference Include="FastColoredTextBox">
       <HintPath>..\DLL\FastColoredTextBox.dll</HintPath>
     </Reference>
@@ -67,6 +74,9 @@
     <Reference Include="LibVLCSharp.WinForms, Version=3.8.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LibVLCSharp.WinForms.3.8.2\lib\net40\LibVLCSharp.WinForms.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
       <Private>True</Private>
@@ -76,11 +86,38 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
+    <Reference Include="NodeNetwork, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NodeNetwork.6.0.0\lib\net472\NodeNetwork.dll</HintPath>
+    </Reference>
+    <Reference Include="NodeNetworkToolkit, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NodeNetworkToolkit.6.0.0\lib\net472\NodeNetworkToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Pharmacist.Common, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pharmacist.Common.2.0.8\lib\net472\Pharmacist.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="Razorvine.Pickle">
       <HintPath>..\DLL\Razorvine.Pickle.dll</HintPath>
     </Reference>
+    <Reference Include="ReactiveUI, Version=13.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReactiveUI.13.2.18\lib\net472\ReactiveUI.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveUI.Events.WPF, Version=13.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReactiveUI.Events.WPF.13.2.18\lib\net48\ReactiveUI.Events.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveUI.Wpf, Version=13.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReactiveUI.WPF.13.2.18\lib\net48\ReactiveUI.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="RPAParser">
       <HintPath>..\DLL\RPAParser.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat, Version=11.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Splat.11.0.1\lib\net461\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat.Drawing, Version=11.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Splat.Drawing.11.0.1\lib\net461\Splat.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="Steamworks.NET">
       <HintPath>..\DLL\Steamworks.NET.dll</HintPath>
@@ -96,7 +133,11 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Collections.Immutable, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.5.0.0\lib\net461\System.Collections.Immutable.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
       <Private>True</Private>
@@ -111,6 +152,11 @@
     </Reference>
     <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Primitives.4.3.0\lib\net45\System.Drawing.Primitives.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
@@ -172,6 +218,9 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Reactive, Version=5.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.5.0.0\lib\net472\System.Reactive.dll</HintPath>
+    </Reference>
     <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
       <Private>True</Private>
@@ -182,8 +231,8 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.Extensions.4.3.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
@@ -225,6 +274,15 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions">
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -248,6 +306,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Build.cs" />
@@ -257,7 +318,8 @@
     <Compile Include="Classes\Item.cs" />
     <Compile Include="Classes\Mode.cs" />
     <Compile Include="Classes\Skin.cs" />
-    <Compile Include="Classes\VisualScript.cs" />
+    <Compile Include="Classes\StringExtension.cs" />
+    <Compile Include="Classes\VisualScriptND.cs" />
     <Compile Include="Classes\Workshop_Struct.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="FCT_RenPy.cs" />
@@ -310,11 +372,23 @@
     <Compile Include="Forms\NewLabel.Designer.cs">
       <DependentUpon>NewLabel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Panel\VisualScript.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Panel\VisualScript.Designer.cs">
+      <DependentUpon>VisualScript.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Visual Node\NewCharacterVS.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Visual Node\NewCharacterVS.Designer.cs">
       <DependentUpon>NewCharacterVS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Visual Node\NewContentVS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Visual Node\NewContentVS.Designer.cs">
+      <DependentUpon>NewContentVS.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Visual Node\NewObjectVS.cs">
       <SubType>Form</SubType>
@@ -340,12 +414,6 @@
     <Compile Include="Forms\Panel\Skin.Designer.cs">
       <DependentUpon>Skin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Panel\VisualScript.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Panel\VisualScript.Designer.cs">
-      <DependentUpon>VisualScript.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -357,12 +425,6 @@
     </Compile>
     <Compile Include="Forms\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SpriteManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SpriteManager.Designer.cs">
-      <DependentUpon>SpriteManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\TagsEditor.cs">
       <SubType>Form</SubType>
@@ -404,8 +466,14 @@
     <EmbeddedResource Include="Forms\NewLabel.resx">
       <DependentUpon>NewLabel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Panel\VisualScript.resx">
+      <DependentUpon>VisualScript.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Visual Node\NewCharacterVS.resx">
       <DependentUpon>NewCharacterVS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Visual Node\NewContentVS.resx">
+      <DependentUpon>NewContentVS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Visual Node\NewObjectVS.resx">
       <DependentUpon>NewObjectVS.cs</DependentUpon>
@@ -419,17 +487,11 @@
     <EmbeddedResource Include="Forms\Panel\Skin.resx">
       <DependentUpon>Skin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Panel\VisualScript.resx">
-      <DependentUpon>VisualScript.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SpriteManager.resx">
-      <DependentUpon>SpriteManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TagsEditor.resx">
       <DependentUpon>TagsEditor.cs</DependentUpon>
@@ -546,6 +608,9 @@
     <Error Condition="!Exists('..\packages\Fody.6.5.5\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.5.5\build\Fody.targets'))" />
     <Error Condition="!Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.5.7.0\build\Costura.Fody.props'))" />
     <Error Condition="!Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets'))" />
+  </Target>
+  <Target Name="AfterClean">
+    <Delete Files="$(TargetDir)\*.xml" />
   </Target>
   <Import Project="..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets')" />
 </Project>

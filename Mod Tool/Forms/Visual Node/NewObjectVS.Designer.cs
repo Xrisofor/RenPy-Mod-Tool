@@ -1,4 +1,6 @@
-﻿namespace ModTool.Forms
+﻿using System.Windows.Forms;
+
+namespace ModTool.Forms
 {
     partial class NewObjectVS
     {
@@ -61,6 +63,7 @@
             // typeComboBox
             // 
             this.typeComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.typeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.typeComboBox.ForeColor = System.Drawing.Color.White;
             this.typeComboBox.FormattingEnabled = true;
@@ -71,7 +74,6 @@
             this.typeComboBox.Name = "typeComboBox";
             this.typeComboBox.Size = new System.Drawing.Size(317, 24);
             this.typeComboBox.TabIndex = 4;
-            this.typeComboBox.Text = "Select a category";
             this.typeComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
@@ -109,6 +111,7 @@
             // additionallyComboBox
             // 
             this.additionallyComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.additionallyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.additionallyComboBox.Enabled = false;
             this.additionallyComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.additionallyComboBox.ForeColor = System.Drawing.Color.White;
@@ -117,7 +120,6 @@
             this.additionallyComboBox.Name = "additionallyComboBox";
             this.additionallyComboBox.Size = new System.Drawing.Size(317, 24);
             this.additionallyComboBox.TabIndex = 7;
-            this.additionallyComboBox.Text = "Select a category";
             this.additionallyComboBox.SelectedIndexChanged += new System.EventHandler(this.additionallyComboBox_SelectedIndexChanged);
             // 
             // NewObjectVS
@@ -134,6 +136,8 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.White;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "NewObjectVS";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Object";

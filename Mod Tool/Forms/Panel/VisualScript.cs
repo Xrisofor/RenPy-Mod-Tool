@@ -3,7 +3,6 @@ using System;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
-using System.Linq;
 
 namespace ModTool.Forms.Panel
 {
@@ -11,14 +10,7 @@ namespace ModTool.Forms.Panel
     {
         private int ModID; private bool isMainFile = true; private string openFileName, convertFileName;
 
-        private RenPyTreeNode rootTreeNode; private static Random random = new Random();
-
-        public static string RandomString(int length)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            return new string(Enumerable.Repeat(chars, length)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
+        private RenPyTreeNode rootTreeNode;
 
         public VisualScript(int ModID)
         {
@@ -27,25 +19,40 @@ namespace ModTool.Forms.Panel
 
             ScriptTreeView.Nodes.Clear();
 
-            if( File.Exists($"{FManager.GetProjectFolder(ModID)}/{Program.Projects[ModID].Name}.json") )
-                rootTreeNode = new RenPyTreeNode(RenPyNode.LoadFromJson($"{FManager.GetProjectFolder(ModID)}/{Program.Projects[ModID].Name}.json"));
+            if (File.Exists($"{FManager.GetProjectFolder(ModID)}/{StringExtension.CyrilicToLatin(Program.Projects[ModID].Name)}.json"))
+                rootTreeNode = new RenPyTreeNode(RenPyNode.LoadFromJson($"{FManager.GetProjectFolder(ModID)}/{StringExtension.CyrilicToLatin(Program.Projects[ModID].Name)}.json"));
             else
             {
-                RenPyNode rootNode = new RenPyNode("label", Program.Projects[ModID].Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_"));
+                RenPyNode rootNode = new RenPyNode("label", StringExtension.CyrilicToLatin(Program.Projects[ModID].Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_")));
                 rootTreeNode = new RenPyTreeNode(rootNode);
             }
 
-            openFileName = $"{FManager.GetProjectFolder(ModID)}/{Program.Projects[ModID].Name}.json";
-            convertFileName = $"{FManager.GetProjectFolder(ModID)}/{Program.Projects[ModID].Name}.rpy";
+            openFileName = $"{FManager.GetProjectFolder(ModID)}/{StringExtension.CyrilicToLatin(Program.Projects[ModID].Name)}.json";
+            convertFileName = $"{FManager.GetProjectFolder(ModID)}/{StringExtension.CyrilicToLatin(Program.Projects[ModID].Name)}.rpy";
 
             ScriptTreeView.Nodes.Add(rootTreeNode);
+
+            addToolStripMenuItem.Text = Config.GetText("add_button");
+            editToolStripMenuItem.Text = Config.GetText("edit_button");
+            removeToolStripMenuItem.Text = Config.GetText("delete_button");
+            upToolStripMenuItem.Text = Config.GetText("up_button");
+            downToolStripMenuItem.Text = Config.GetText("down_button");
 
             ReDrawTreeView();
         }
 
         private void ReDrawTreeView()
         {
+            RenPyTreeNode selectedNode = (RenPyTreeNode)ScriptTreeView.SelectedNode;
+            int selectedIndex = ScriptTreeView.SelectedNode?.Index ?? -1;
+
             rootTreeNode.UpdateTreeNode();
+
+            if (selectedIndex != -1 && selectedIndex < ScriptTreeView.Nodes[0].Nodes.Count)
+            {
+                ScriptTreeView.SelectedNode = ScriptTreeView.Nodes[0].Nodes[selectedIndex];
+                ScriptTreeView.SelectedNode.Expand();
+            }
 
             ScriptTreeView.ExpandAll();
         }
@@ -60,66 +67,43 @@ namespace ModTool.Forms.Panel
 
                 if (ScriptTreeView.SelectedNode != null && ScriptTreeView.SelectedNode.Tag is RenPyNode selectedNode)
                 {
-                    if (selectedNode.Type == "menu")
+                    if (selectedNode.Type == "menu" || selectedNode.Type == "var_if")
                         rootNode = selectedNode.Children[ScriptTreeView.SelectedNode.Index];
                 }
 
                 switch (newObjectVS.SelectedEnum)
                 {
+                    // Dialog
                     case VSObject.say:
-
                         if ((string)newObjectVS.AdditionallyEnum != "none")
-                            rootNode.AddChild(new RenPyNode("say", newObjectVS.TextNumCheck, (string)newObjectVS.AdditionallyEnum));
+                            rootNode.AddChild(new RenPyNode(newObjectVS.SelectedEnum.ToString(), newObjectVS.TextNumCheck, (string)newObjectVS.AdditionallyEnum));
                         else
-                            rootNode.AddChild(new RenPyNode("say", newObjectVS.TextNumCheck));
-                        
+                            rootNode.AddChild(new RenPyNode(newObjectVS.SelectedEnum.ToString(), newObjectVS.TextNumCheck));
                         break;
-
-                    case VSObject.show:
-                        rootNode.AddChild(new RenPyNode("show", $"{(string)newObjectVS.AdditionallyEnum}"));
-                        break;
-
-                    case VSObject.hide:
-                        rootNode.AddChild(new RenPyNode("hide", $"{(string)newObjectVS.AdditionallyEnum}"));
-                        break;
-
-                    case VSObject.scene:
-                        rootNode.AddChild(new RenPyNode("scene", (string)newObjectVS.AdditionallyEnum));
-                        break;
-
-                    case VSObject.play_music:
-                        rootNode.AddChild(new RenPyNode("play music", (string)newObjectVS.AdditionallyEnum));
-                        break;
-
-                    case VSObject.play_sound:
-                        rootNode.AddChild(new RenPyNode("play sound", (string)newObjectVS.AdditionallyEnum));
-                        break;
-
-                    case VSObject.stop:
-                        rootNode.AddChild(new RenPyNode("stop", (string)newObjectVS.AdditionallyEnum));
-                        break;
-
                     case VSObject.pause:
-                        rootNode.AddChild(new RenPyNode("pause", $"({newObjectVS.TextNumCheck})"));
+                        rootNode.AddChild(new RenPyNode(newObjectVS.SelectedEnum.ToString(), $"({newObjectVS.TextNumCheck})"));
                         break;
-
-                    case VSObject.with:
-                        rootTreeNode.RenPyNode.AddChild(new RenPyNode("with", (string)newObjectVS.AdditionallyEnum));
-                        break;
-
                     case VSObject.menu:
-                        rootNode.AddChild(new RenPyNode("menu", ""));
+                        rootNode.AddChild(new RenPyNode(newObjectVS.SelectedEnum.ToString(), string.Empty));
+                        break;
+
+                    // Images
+                    case VSObject.show:
+                    case VSObject.hide:
+                    case VSObject.scene:
+                    case VSObject.with:
+
+                    // Audio
+                    case VSObject.play_music:
+                    case VSObject.play_sound:
+                    case VSObject.stop:
+                        rootNode.AddChild(new RenPyNode(newObjectVS.SelectedEnum.ToString().Replace("_", " "), (string)newObjectVS.AdditionallyEnum));
                         break;
 
                     case VSObject.discord:
-                        rootNode.AddChild(new RenPyNode("discord", newObjectVS.TextNumCheck));
-                        break;
-
                     case VSObject.snake_game:
-                        rootNode.AddChild(new RenPyNode("snake_game", newObjectVS.TextNumCheck));
-                        break;
                     case VSObject.flappy_bird_game:
-                        rootNode.AddChild(new RenPyNode("flappy_bird_game", newObjectVS.TextNumCheck));
+                        rootNode.AddChild(new RenPyNode(newObjectVS.SelectedEnum.ToString(), newObjectVS.TextNumCheck));
                         break;
 
                     default:
@@ -135,7 +119,7 @@ namespace ModTool.Forms.Panel
         {
             if (isMainFile)
             {
-                string convertRpy = $"init python:\n    mods['{Program.Projects[ModID].Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_")}'] = \"{Program.Projects[ModID].Name}\"\n\n";
+                string convertRpy = $"init python:\n    mods['{StringExtension.CyrilicToLatin(Program.Projects[ModID].Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_"))}'] = \"{Program.Projects[ModID].Name}\"\n\n";
                 convertRpy += RenPyConverter.ConvertToRenPyCode(rootTreeNode.RenPyNode);
                 convertRpy += $"    return";
 
@@ -162,7 +146,7 @@ namespace ModTool.Forms.Panel
 
         private void ScriptTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if( ScriptTreeView.SelectedNode != null )
+            if (ScriptTreeView.SelectedNode != null)
             {
 
                 if (!ScriptTreeView.SelectedNode.Text.StartsWith("label", StringComparison.OrdinalIgnoreCase))
@@ -188,121 +172,19 @@ namespace ModTool.Forms.Panel
                         editToolStripMenuItem.Enabled = true;
                         removeToolStripMenuItem.Enabled = true;
                     }
+
+                    upToolStripMenuItem.Enabled = true;
+                    downToolStripMenuItem.Enabled = true;
                 }
                 else
                 {
                     editToolStripMenuItem.Enabled = false;
                     removeToolStripMenuItem.Enabled = false;
                     addToolStripMenuItem.Enabled = true;
+                    upToolStripMenuItem.Enabled = false;
+                    downToolStripMenuItem.Enabled = false;
                 }
 
-            }
-        }
-
-        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ScriptTreeView.SelectedNode != null)
-            {
-                RenPyNode nodeToRemove = ScriptTreeView.SelectedNode.Parent.Tag as RenPyNode;
-
-                if (nodeToRemove.Type == "menu" )
-                    nodeToRemove.RemoveChild(ScriptTreeView.SelectedNode.Index);
-                else
-                    rootTreeNode.RenPyNode.RemoveChild(ScriptTreeView.SelectedNode.Index);
-
-                ReDrawTreeView();
-            } 
-        }
-
-        private void toolStripSeparator1_Paint(object sender, PaintEventArgs e)
-        {
-            ToolStripSeparator sep = (ToolStripSeparator)sender;
-            e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(22, 25, 32)), 0, 0, sep.Width, sep.Height);
-            e.Graphics.DrawLine(new Pen(Color.White), 30, sep.Height / 2, sep.Width - 4, sep.Height / 2);
-        }
-
-        private void addToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ScriptTreeView.SelectedNode.Text.StartsWith("menu", StringComparison.OrdinalIgnoreCase))
-            {
-                string randomStr = RandomString(20);
-
-                RenPyNode rootNode = rootTreeNode.RenPyNode.Children[ScriptTreeView.SelectedNode.Index];
-                NewObjectVS newObjectVS = new NewObjectVS(ModID, true);
-
-                if (newObjectVS.ShowDialog() == DialogResult.OK)
-                {
-                    rootNode.AddChild(new RenPyNode(newObjectVS.TextNumCheck, $"jump {randomStr}"));
-
-                    RenPyNode newFileNode = new RenPyNode("label", randomStr);
-                    newFileNode.SaveToJson($"{FManager.GetProjectFolder(ModID)}/{randomStr}.json");
-                }
-            }
-            else
-                NewFileButton_Click(sender, e);
-
-            ReDrawTreeView();
-        }
-
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ScriptTreeView.SelectedNode != null)
-            {
-                RenPyNode editNode = ScriptTreeView.SelectedNode.Tag as RenPyNode;
-                NewObjectVS newObjectVS = new NewObjectVS(ModID);
-                newObjectVS.EditItem(editNode);
-
-                if (newObjectVS.ShowDialog() == DialogResult.OK)
-                {
-                    
-                    editNode.Type = newObjectVS.SelectedEnum.ToString();
-                    
-                    switch(newObjectVS.SelectedEnum)
-                    {
-                        case VSObject.say:
-
-                            if ((string)newObjectVS.AdditionallyEnum != "none")
-                            {
-                                editNode.Content = newObjectVS.TextNumCheck;
-                                editNode.Character = (string)newObjectVS.AdditionallyEnum;
-                            }
-                            else
-                                editNode.Content = newObjectVS.TextNumCheck;
-
-                            break;
-
-                        case VSObject.jump:
-                            editNode.Content = newObjectVS.TextNumCheck;
-                            break;
-
-                        case VSObject.comment:
-                            editNode.Content = newObjectVS.TextNumCheck;
-                            break;
-
-                        case VSObject.pause:
-                            editNode.Content = $"({newObjectVS.TextNumCheck})";
-                            break;
-
-                        case VSObject.discord:
-                            editNode.Content = newObjectVS.TextNumCheck;
-                            break;
-
-                        case VSObject.snake_game:
-                            editNode.Content = newObjectVS.TextNumCheck;
-                            break;
-
-                        case VSObject.flappy_bird_game:
-                            editNode.Content = newObjectVS.TextNumCheck;
-                            break;
-
-                        default:
-                            editNode.Content = (string)newObjectVS.AdditionallyEnum;
-                            break;
-                    }
-
-                }
-
-                ReDrawTreeView();
             }
         }
 
@@ -312,15 +194,15 @@ namespace ModTool.Forms.Panel
 
             if (rpySaveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                RenPyNode newFileNode = new RenPyNode("label", Path.GetFileNameWithoutExtension(rpySaveFileDialog.FileName).ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_"));
-                newFileNode.SaveToJson(rpySaveFileDialog.FileName);
-                
+                RenPyNode newFileNode = new RenPyNode("label", StringExtension.CyrilicToLatin(Path.GetFileNameWithoutExtension(rpySaveFileDialog.FileName).ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_")));
+                newFileNode.SaveToJson($@"{Path.GetDirectoryName(rpySaveFileDialog.FileName)}/{Path.GetFileName(StringExtension.CyrilicToLatin(rpySaveFileDialog.FileName))}");
+
                 isMainFile = false;
 
-                RenPyNode loadedNode = RenPyNode.LoadFromJson(rpySaveFileDialog.FileName);
+                RenPyNode loadedNode = RenPyNode.LoadFromJson($@"{Path.GetDirectoryName(rpySaveFileDialog.FileName)}/{Path.GetFileName(StringExtension.CyrilicToLatin(rpySaveFileDialog.FileName))}");
 
-                openFileName = rpySaveFileDialog.FileName;
-                convertFileName = $"{FManager.GetProjectFolder(ModID)}/{Path.GetFileNameWithoutExtension(rpySaveFileDialog.FileName)}.rpy";
+                openFileName = $@"{Path.GetDirectoryName(rpySaveFileDialog.FileName)}/{Path.GetFileName(StringExtension.CyrilicToLatin(rpySaveFileDialog.FileName))}";
+                convertFileName = $"{FManager.GetProjectFolder(ModID)}/{Path.GetFileNameWithoutExtension(StringExtension.CyrilicToLatin(rpySaveFileDialog.FileName))}.rpy";
 
                 if (loadedNode != null)
                 {
@@ -332,30 +214,16 @@ namespace ModTool.Forms.Panel
             }
         }
 
-        private void upToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ScriptTreeView.SelectedNode != null)
-            {
-                RenPyTreeNode selectedNode = (RenPyTreeNode)ScriptTreeView.SelectedNode;
-                selectedNode.MoveUp();
-                ReDrawTreeView();
-            }
-        }
-
-        private void downToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ScriptTreeView.SelectedNode != null)
-            {
-                RenPyTreeNode selectedNode = (RenPyTreeNode)ScriptTreeView.SelectedNode;
-                selectedNode.MoveDown();
-                ReDrawTreeView();
-            }
-        }
-
         private void AddCharacterButton_Click(object sender, EventArgs e)
         {
             NewCharacterVS newCharacterVS = new NewCharacterVS(ModID);
             newCharacterVS.Show();
+        }
+
+        private void AddContentButton_Click(object sender, EventArgs e)
+        {
+            NewContentVS newContentVS = new NewContentVS(ModID);
+            newContentVS.Show();
         }
 
         private void OpenFileButton_Click(object sender, EventArgs e)
@@ -364,7 +232,7 @@ namespace ModTool.Forms.Panel
 
             if (rpyOpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (Path.GetFileNameWithoutExtension(rpyOpenFileDialog.FileName) == Program.Projects[ModID].Name)
+                if (Path.GetFileNameWithoutExtension(rpyOpenFileDialog.FileName) == StringExtension.CyrilicToLatin(Program.Projects[ModID].Name))
                     isMainFile = true;
                 else if (Path.GetFileNameWithoutExtension(rpyOpenFileDialog.FileName) == "project")
                 {
@@ -388,5 +256,129 @@ namespace ModTool.Forms.Panel
                 }
             }
         }
+
+        #region Tool Strip Menu
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ScriptTreeView.SelectedNode.Text.StartsWith("menu", StringComparison.OrdinalIgnoreCase))
+            {
+                string randomStr = StringExtension.RandomString(20);
+
+                RenPyNode rootNode = rootTreeNode.RenPyNode.Children[ScriptTreeView.SelectedNode.Index];
+                NewObjectVS newObjectVS = new NewObjectVS(ModID, true);
+
+                if (newObjectVS.ShowDialog() == DialogResult.OK)
+                {
+                    rootNode.AddChild(new RenPyNode(newObjectVS.TextNumCheck, $"jump {randomStr}"));
+
+                    RenPyNode newFileNode = new RenPyNode("label", randomStr);
+                    newFileNode.SaveToJson($"{FManager.GetProjectFolder(ModID)}/{randomStr}.json");
+                }
+            }
+            else
+                NewFileButton_Click(sender, e);
+
+            ReDrawTreeView();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ScriptTreeView.SelectedNode != null)
+            {
+                RenPyNode editNode = ScriptTreeView.SelectedNode.Tag as RenPyNode;
+                editNode.Type = editNode.Type.Replace(" ", "_");
+                NewObjectVS newObjectVS = new NewObjectVS(ModID);
+                newObjectVS.EditItem(editNode);
+
+                if (newObjectVS.ShowDialog() == DialogResult.OK)
+                {
+
+                    editNode.Type = newObjectVS.SelectedEnum.ToString();
+
+                    switch (newObjectVS.SelectedEnum)
+                    {
+                        case VSObject.say:
+                            if ((string)newObjectVS.AdditionallyEnum != "none")
+                            {
+                                editNode.Content = newObjectVS.TextNumCheck;
+                                editNode.Character = (string)newObjectVS.AdditionallyEnum;
+                            }
+                            else
+                                editNode.Content = newObjectVS.TextNumCheck;
+                            break;
+
+                        case VSObject.pause:
+                            editNode.Content = $"({newObjectVS.TextNumCheck})";
+                            break;
+
+                        case VSObject.jump:
+                        case VSObject.comment:
+                        case VSObject.discord:
+                        case VSObject.snake_game:
+                        case VSObject.flappy_bird_game:
+                            editNode.Content = newObjectVS.TextNumCheck;
+                            break;
+
+                        case VSObject.play_music:
+                        case VSObject.play_sound:
+                            editNode.Type = newObjectVS.SelectedEnum.ToString().Replace("_", " ");
+                            editNode.Content = (string)newObjectVS.AdditionallyEnum;
+                            break;
+
+                        default:
+                            editNode.Content = (string)newObjectVS.AdditionallyEnum;
+                            break;
+                    }
+
+                }
+
+                ReDrawTreeView();
+            }
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ScriptTreeView.SelectedNode != null)
+            {
+                RenPyNode nodeToRemove = ScriptTreeView.SelectedNode.Parent.Tag as RenPyNode;
+
+                if (nodeToRemove.Type == "menu")
+                    nodeToRemove.RemoveChild(ScriptTreeView.SelectedNode.Index);
+                else
+                    rootTreeNode.RenPyNode.RemoveChild(ScriptTreeView.SelectedNode.Index);
+
+                ReDrawTreeView();
+            }
+        }
+
+        private void upToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ScriptTreeView.SelectedNode != null)
+            {
+                RenPyTreeNode selectedNode = (RenPyTreeNode)ScriptTreeView.SelectedNode;
+                selectedNode.MoveUp();
+                ReDrawTreeView();
+            }
+        }
+
+        private void downToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ScriptTreeView.SelectedNode != null)
+            {
+                RenPyTreeNode selectedNode = (RenPyTreeNode)ScriptTreeView.SelectedNode;
+                selectedNode.MoveDown();
+                ReDrawTreeView();
+            }
+        }
+
+        private void toolStripSeparator1_Paint(object sender, PaintEventArgs e)
+        {
+            ToolStripSeparator sep = (ToolStripSeparator)sender;
+            e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(22, 25, 32)), 0, 0, sep.Width, sep.Height);
+            e.Graphics.DrawLine(new Pen(Color.White), 30, sep.Height / 2, sep.Width - 4, sep.Height / 2);
+        }
+
+        #endregion
     }
 }

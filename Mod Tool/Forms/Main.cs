@@ -57,6 +57,9 @@ namespace ModTool.Forms
 
                 Thread.Sleep(2000);
 
+                // Program.SplashScreen.LoadingLabel.Text = Config.GetText("loading_rpa_data");
+                //Thread.Sleep(2000);
+
                 Program.SplashScreen.LoadingLabel.Text = Config.GetText("loading_confirm");
             }
             catch
@@ -67,6 +70,12 @@ namespace ModTool.Forms
 
             Thread.Sleep(2000);
             thread.Abort();
+
+            if (!File.Exists($"{FManager.GetGameFolder()}/archive.rpa"))
+            {
+                MessageBox.Show(Config.GetText("loading_mod_tool_error"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(0);
+            }
 
             NewButton.Text = Config.GetText("new_button");
             OpenButton.Text = Config.GetText("open_button");
@@ -113,28 +122,17 @@ namespace ModTool.Forms
                         Directory.CreateDirectory($@"{FManager.GetProjectFolder(project)}\image");
                         break;
 
-                    case ModType.SnakeMode:
-                        break;
-
-                    case ModType.FlappyBirdMode:
-                        break;
+                    case ModType.SnakeMode: break;
+                    case ModType.FlappyBirdMode: break;
+                    case ModType.ModeVisualScript: break;
 
                     case ModType.ModRenPy:
                         var rpaFile = File.ReadAllText($@"{FManager.GetExampleFolder()}\base.rpy");
 
-                        rpaFile = rpaFile.Replace("{label}", project.Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_"));
+                        rpaFile = rpaFile.Replace("{label}", StringExtension.CyrilicToLatin( project.Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_") ));
                         rpaFile = rpaFile.Replace("{name}", project.Name);
 
-                        File.WriteAllText($@"{FManager.GetProjectFolder(project)}\{project.Name}.rpy", rpaFile);
-                        break;
-
-                    case ModType.ModeVisualScript:
-                        break;
-
-                    default:
-                        Directory.CreateDirectory($@"{FManager.GetProjectFolder(project)}\image");
-                        Directory.CreateDirectory($@"{FManager.GetProjectFolder(project)}\audio");
-                        Directory.CreateDirectory($@"{FManager.GetProjectFolder(project)}\video");
+                        File.WriteAllText($@"{FManager.GetProjectFolder(project)}\{StringExtension.CyrilicToLatin(project.Name)}.rpy", rpaFile);
                         break;
                 }
 
@@ -144,22 +142,31 @@ namespace ModTool.Forms
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            Directory.Delete($@"{AppDomain.CurrentDomain.BaseDirectory}\..\game\mods\{Program.Projects[ProjectListView.SelectedIndices[0]].Name}", true);
-            ResetProjectList();
+            if ( DialogResult.Yes == MessageBox.Show(String.Format(Config.GetText("delete_project_message"), Program.Projects[ProjectListView.SelectedIndices[0]].Name), $"{Config.GameName} - Mod Tool", MessageBoxButtons.YesNo, MessageBoxIcon.Question) )
+            {
+                Directory.Delete($@"{AppDomain.CurrentDomain.BaseDirectory}\..\game\mods\{Program.Projects[ProjectListView.SelectedIndices[0]].Name}", true);
+                ResetProjectList();
+            }
         }
 
         private void OpenButton_Click(object sender, EventArgs e)
         {
-            Editor editor = new Editor(ProjectListView.SelectedIndices[0]);
-            editor.Show();
-            Hide();
+            if (ProjectListView.SelectedItems.Count != 0)
+            {
+                Editor editor = new Editor(ProjectListView.SelectedIndices[0], this);
+                editor.Show();
+                Hide();
+            }          
         }
 
         private void ProjectListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Editor editor = new Editor(ProjectListView.SelectedIndices[0], this);
-            editor.Show();
-            Hide();
+            if (ProjectListView.SelectedItems.Count != 0)
+            {
+                Editor editor = new Editor(ProjectListView.SelectedIndices[0], this);
+                editor.Show();
+                Hide();
+            }
         }
 
         private void Main_Shown(object sender, EventArgs e) { }  

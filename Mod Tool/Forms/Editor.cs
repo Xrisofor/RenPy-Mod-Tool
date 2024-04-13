@@ -53,12 +53,13 @@ namespace ModTool.Forms
                 case ModType.ModeVisualScript:
 
                     DCPanel.Controls.Clear();
-                    Panel.VisualScript visualScriptForm = new Panel.VisualScript(ModID);
-                    visualScriptForm.TopLevel = false;
-                    DCPanel.Controls.Add(visualScriptForm);
-                    visualScriptForm.FormBorderStyle = FormBorderStyle.None;
-                    visualScriptForm.Dock = DockStyle.Fill;
-                    visualScriptForm.Show();
+
+                    Panel.VisualScript visualNodeForm = new Panel.VisualScript(ModID);
+                    visualNodeForm.TopLevel = false;
+                    DCPanel.Controls.Add(visualNodeForm);
+                    visualNodeForm.FormBorderStyle = FormBorderStyle.None;
+                    visualNodeForm.Dock = DockStyle.Fill;
+                    visualNodeForm.Show();
 
                     break;
 
@@ -184,15 +185,14 @@ namespace ModTool.Forms
 
         private void TagsButton_Click(object sender, EventArgs e)
         {
-            TagsEditor tagsEditor = new TagsEditor(ModID);
-            tagsEditor.ShowDialog();
+            TagsEditor tagsEditor = new TagsEditor(ModID); tagsEditor.ShowDialog();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            this.FormClosing -= Editor_FormClosing;
+            FormClosing -= Editor_FormClosing;
             if(Main != null) Main.Show();
-            this.Close();
+            Close();
         }
     }
 }

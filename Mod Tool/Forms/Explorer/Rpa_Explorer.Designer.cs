@@ -245,6 +245,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Pause";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += Button1_Click;
             // 
             // videoView1
             // 

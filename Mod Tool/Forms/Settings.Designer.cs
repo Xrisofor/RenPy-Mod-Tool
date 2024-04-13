@@ -37,8 +37,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.PixelSampleColorMaxNum = new System.Windows.Forms.NumericUpDown();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.restoreProjectsButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PixelSampleColorMaxNum)).BeginInit();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -49,11 +53,11 @@
             this.flowLayoutPanel1.Controls.Add(this.ScriptEditorComboBox);
             this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.Controls.Add(this.PixelSampleColorMaxNum);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(519, 450);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // label1
@@ -158,12 +162,49 @@
             // 
             this.openFileDialog.Filter = "Application|*.exe";
             // 
+            // restoreProjectsButton
+            // 
+            this.restoreProjectsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.restoreProjectsButton.Enabled = false;
+            this.restoreProjectsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.restoreProjectsButton.Location = new System.Drawing.Point(6, 10);
+            this.restoreProjectsButton.Margin = new System.Windows.Forms.Padding(10, 10, 10, 0);
+            this.restoreProjectsButton.Name = "restoreProjectsButton";
+            this.restoreProjectsButton.Size = new System.Drawing.Size(247, 37);
+            this.restoreProjectsButton.TabIndex = 0;
+            this.restoreProjectsButton.Text = "Restore projects";
+            this.restoreProjectsButton.UseVisualStyleBackColor = true;
+            this.restoreProjectsButton.Click += new System.EventHandler(this.restoreProjectsButton_Click);
+            // 
+            // label4
+            // 
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Location = new System.Drawing.Point(519, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(18, 450);
+            this.label4.TabIndex = 6;
+            this.label4.Text = resources.GetString("label4.Text");
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.restoreProjectsButton);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(537, 0);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(263, 450);
+            this.flowLayoutPanel2.TabIndex = 2;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(25)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.ForeColor = System.Drawing.Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -173,6 +214,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Settings_FormClosed);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PixelSampleColorMaxNum)).EndInit();
+            this.flowLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -187,5 +229,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown PixelSampleColorMaxNum;
+        private System.Windows.Forms.Button restoreProjectsButton;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }

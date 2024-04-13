@@ -59,6 +59,7 @@ namespace ModTool.Forms
             label1.Text = Config.GetText("settings_language_title");
             label2.Text = Config.GetText("settings_script_editor_title");
             label3.Text = Config.GetText("settings_pixel_sc_max_title");
+            restoreProjectsButton.Text = Config.GetText("settings_restore_projects_title");
         }
 
         private void Settings_FormClosed(object sender, FormClosedEventArgs e)
@@ -109,6 +110,39 @@ namespace ModTool.Forms
         {
             Config.UserSettings.PixelationSampleColors = (int)PixelSampleColorMaxNum.Value;
             File.WriteAllText($@"{FManager.GetJsonFolder()}\settings.json", JsonConvert.SerializeObject(Config.UserSettings));
+        }
+
+        private void restoreProjectsButton_Click(object sender, EventArgs e)
+        {
+            
+            switch( MessageBox.Show(Config.GetText("restore_projects_message"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) )
+            {
+                case DialogResult.Yes:
+
+                    string[] allFoldersDel = Directory.GetDirectories($@"{AppDomain.CurrentDomain.BaseDirectory}\..\game\mods\");
+
+                    foreach (string folder in allFoldersDel)
+                    {
+                        if (File.Exists($"{folder}/project.json"))
+                            File.Delete($"{folder}/project.json");
+
+                        File.WriteAllText($"{folder}/project.json", JsonConvert.SerializeObject( new Project(Path.GetDirectoryName(folder), ModType.ModRenPy)) );
+                    }
+
+                    break;
+
+                case DialogResult.No:
+
+                    string[] allFolders = Directory.GetDirectories($@"{AppDomain.CurrentDomain.BaseDirectory}\..\game\mods\");
+
+                    foreach (string folder in allFolders)
+                    {
+                        File.WriteAllText($"{folder}/project.json", JsonConvert.SerializeObject(new Project(Path.GetDirectoryName(folder), ModType.ModRenPy)));
+                    }
+
+                    break;
+            }
+        
         }
     }
 }
