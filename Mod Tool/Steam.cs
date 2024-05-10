@@ -40,9 +40,7 @@ namespace ModTool
             return SteamAPI.Init();
         }
 
-        private static void UpdateWorkshopEULAStatus(WorkshopEULAStatus_t temp_WorkshopEULAStatus, bool bIOFailure)
-        {
+        private static void UpdateWorkshopEULAStatus(WorkshopEULAStatus_t temp_WorkshopEULAStatus, bool bIOFailure) =>
             m_WorkshopEULAStatus = temp_WorkshopEULAStatus;
-        }
     }
 }

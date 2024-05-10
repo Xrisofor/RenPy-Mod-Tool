@@ -20,6 +20,7 @@ namespace ModTool.Forms
             newCharactersCheckBox.Checked = Program.Projects[ModID].Tags.Contains("New Characters");
 
             Text = Config.GetText("tags_manager_title");
+
             newStoryCheckBox.Text = Config.GetText("new_story_tag");
             newGraphicsCheckBox.Text = Config.GetText("new_graphics_tag");
             newFeaturesCheckBox.Text = Config.GetText("new_features_tag");

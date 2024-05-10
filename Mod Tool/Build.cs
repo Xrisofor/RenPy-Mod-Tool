@@ -13,10 +13,7 @@ namespace ModTool
     {
         private int ModID;
 
-        public Build(int ModID)
-        {
-            this.ModID = ModID;
-        }
+        public Build(int ModID) => this.ModID = ModID;
 
         public bool Compile(bool showMessage = true)
         {

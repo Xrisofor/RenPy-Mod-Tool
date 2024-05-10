@@ -4,9 +4,7 @@
     {
         public string Path;
 
-        public Item (string Path)
-        {
+        public Item (string Path) =>
             this.Path = Path;
-        }
     }
 }
