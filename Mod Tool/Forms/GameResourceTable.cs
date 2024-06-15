@@ -63,7 +63,7 @@ namespace ModTool.Forms
             flowLayoutPanel1.Controls.Clear();
             for (int i = 0; i < strings.Count; i++)
             {
-                if (strings.ElementAt(i).Value != string.Empty)
+                if (strings.ElementAt(i).Value != string.Empty && File.Exists($"{FManager.GetGameFolder()}/archive.rpa"))
                 {
                     LinkLabel linkLabel = new LinkLabel();
                     linkLabel.Padding = new Padding(10, 10, 0, 10);
@@ -95,7 +95,7 @@ namespace ModTool.Forms
             flowLayoutPanel1.Controls.Clear();
             for (int i = 0; i < strings.Count; i++)
             {
-                if (strings.ElementAt(i).Value != string.Empty)
+                if (strings.ElementAt(i).Value != string.Empty && File.Exists($"{FManager.GetGameFolder()}/archive.rpa"))
                 {
                     LinkLabel linkLabel = new LinkLabel();
                     linkLabel.Padding = new Padding(10, 10, 0, 10);
@@ -127,7 +127,7 @@ namespace ModTool.Forms
             flowLayoutPanel1.Controls.Clear();
             for (int i = 0; i < strings.Count; i++)
             {
-                if (strings.ElementAt(i).Value != string.Empty)
+                if (strings.ElementAt(i).Value != string.Empty && File.Exists($"{FManager.GetGameFolder()}/archive.rpa"))
                 {
                     LinkLabel linkLabel = new LinkLabel();
                     linkLabel.Padding = new Padding(10, 10, 0, 10);
@@ -159,7 +159,7 @@ namespace ModTool.Forms
             flowLayoutPanel1.Controls.Clear();
             for (int i = 0; i < strings.Count; i++)
             {
-                if (strings.ElementAt(i).Value != string.Empty)
+                if (strings.ElementAt(i).Value != string.Empty && File.Exists($"{FManager.GetGameFolder()}/archive.rpa"))
                 {
                     LinkLabel linkLabel = new LinkLabel();
                     linkLabel.Padding = new Padding(10, 10, 0, 10);

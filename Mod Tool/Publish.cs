@@ -8,7 +8,7 @@ namespace ModTool
 {
     public class Publish
     {
-        private int ModID;
+        private int ModID; public bool updatePreviewImage = true;
         private SteamWorkshopItem publishedItemInfo;
 
         public Publish(int ModID)
@@ -91,11 +91,14 @@ namespace ModTool
             SteamUGC.SetItemDescription(updateHandle, publishedItemInfo.Description);
             SteamUGC.SetItemContent(updateHandle, publishedItemInfo.ContentFolderPath);
 
-            if (publishedItemInfo.PreviewImagePath != null && publishedItemInfo.PreviewImagePath != string.Empty)
-                SteamUGC.SetItemPreview(updateHandle, publishedItemInfo.PreviewImagePath);
-            else
-                SteamUGC.SetItemPreview(updateHandle, $"{FManager.GetResourcesFolder()}/previmg.png");
-            
+            if (updatePreviewImage == true)
+            {
+                if (publishedItemInfo.PreviewImagePath != null && publishedItemInfo.PreviewImagePath != string.Empty)
+                    SteamUGC.SetItemPreview(updateHandle, publishedItemInfo.PreviewImagePath);
+                else
+                    SteamUGC.SetItemPreview(updateHandle, $"{FManager.GetResourcesFolder()}/previmg.png");
+            }
+
             SteamUGC.SetItemTags(updateHandle, publishedItemInfo.Tags);
             SteamUGC.SetItemVisibility(updateHandle, ERemoteStoragePublishedFileVisibility.k_ERemoteStoragePublishedFileVisibilityPublic);
 

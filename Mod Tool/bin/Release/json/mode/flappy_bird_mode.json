@@ -11,15 +11,6 @@
       "BoolEditor": false
     },
     {
-      "Name": "Score",
-      "Default": "0",
-      "Game": "score",
-      "Increment": 1,
-      "NumberEditor": true,
-      "TextEditor": false,
-      "BoolEditor": false
-    },
-    {
       "Name": "Pipe Speed",
       "Default": "30",
       "Game": "pipe_speed",

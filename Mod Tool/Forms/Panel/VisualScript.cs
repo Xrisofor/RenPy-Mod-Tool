@@ -3,6 +3,7 @@ using System;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
+using ModTool.Forms.Explorer;
 
 namespace ModTool.Forms.Panel
 {
@@ -37,6 +38,9 @@ namespace ModTool.Forms.Panel
             removeToolStripMenuItem.Text = Config.GetText("delete_button");
             upToolStripMenuItem.Text = Config.GetText("up_button");
             downToolStripMenuItem.Text = Config.GetText("down_button");
+
+            if (!File.Exists($"{FManager.GetGameFolder()}/archive.rpa"))
+                rpaExpButton.Visible = false;
 
             ReDrawTreeView();
         }
@@ -87,11 +91,19 @@ namespace ModTool.Forms.Panel
                         rootNode.AddChild(new RenPyNode(newObjectVS.SelectedEnum.ToString(), string.Empty));
                         break;
 
+                    // Screens
+                    case VSObject.show_screen:
+                        rootNode.AddChild(new RenPyNode(newObjectVS.SelectedEnum.ToString().Replace("_", " "), $"{(string)newObjectVS.AdditionallyEnum}({newObjectVS.TextNumCheck})"));
+                        break;
+
                     // Images
                     case VSObject.show:
                     case VSObject.hide:
                     case VSObject.scene:
                     case VSObject.with:
+
+                    // Screens
+                    case VSObject.hide_screen:
 
                     // Audio
                     case VSObject.play_music:
@@ -319,7 +331,13 @@ namespace ModTool.Forms.Panel
                         case VSObject.flappy_bird_game:
                             editNode.Content = newObjectVS.TextNumCheck;
                             break;
+                        
+                        case VSObject.show_screen:
+                            editNode.Type = newObjectVS.SelectedEnum.ToString().Replace("_", " ");
+                            editNode.Content = $"{(string)newObjectVS.AdditionallyEnum}({newObjectVS.TextNumCheck})";
+                            break;
 
+                        case VSObject.hide_screen:
                         case VSObject.play_music:
                         case VSObject.play_sound:
                             editNode.Type = newObjectVS.SelectedEnum.ToString().Replace("_", " ");
@@ -370,6 +388,12 @@ namespace ModTool.Forms.Panel
                 selectedNode.MoveDown();
                 ReDrawTreeView();
             }
+        }
+
+        private void rpaExpButton_Click(object sender, EventArgs e)
+        {
+            Rpa_Explorer rpa_Explorer = new Rpa_Explorer();
+            rpa_Explorer.Show();
         }
 
         private void toolStripSeparator1_Paint(object sender, PaintEventArgs e)

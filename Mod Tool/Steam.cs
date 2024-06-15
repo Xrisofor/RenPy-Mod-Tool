@@ -30,6 +30,8 @@ namespace ModTool
             var steamAPICall = SteamUGC.GetWorkshopEULAStatus();
             var steamAPICallResult = CallResult<WorkshopEULAStatus_t>.Create();
             steamAPICallResult.Set(steamAPICall, UpdateWorkshopEULAStatus);
+
+            SteamUserStats.StoreStats();
         }
 
         public static bool IsSteamInit()
@@ -42,5 +44,11 @@ namespace ModTool
 
         private static void UpdateWorkshopEULAStatus(WorkshopEULAStatus_t temp_WorkshopEULAStatus, bool bIOFailure) =>
             m_WorkshopEULAStatus = temp_WorkshopEULAStatus;
+
+        public static void GrantAchievement(string achApiName)
+        {
+            SteamUserStats.SetAchievement(achApiName);
+            SteamUserStats.StoreStats(); 
+        }
     }
 }

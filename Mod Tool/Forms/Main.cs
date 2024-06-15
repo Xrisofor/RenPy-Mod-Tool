@@ -72,16 +72,14 @@ namespace ModTool.Forms
             thread.Abort();
 
             if (!File.Exists($"{FManager.GetGameFolder()}/archive.rpa"))
-            {
-                MessageBox.Show(Config.GetText("loading_mod_tool_error"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Environment.Exit(0);
-            }
+                MessageBox.Show(Config.GetText("loading_mod_tool_warning_rpa"), $"{Config.GameName} - Mod Tool", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             NewButton.Text = Config.GetText("new_button");
             OpenButton.Text = Config.GetText("open_button");
             DeleteButton.Text = Config.GetText("delete_button");
             SettingsButton.Text = Config.GetText("settings_button");
             label1.Text = $"{Config.GameName} - Mod Tool";
+            Text = $"{Config.GameName} - Mod Tool";
         }
 
         private void ResetProjectList()
@@ -131,22 +129,28 @@ namespace ModTool.Forms
 
                         rpaFile = rpaFile.Replace("{label}", StringExtension.CyrilicToLatin( project.Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_") ));
                         rpaFile = rpaFile.Replace("{name}", project.Name);
+                        rpaFile = rpaFile.Replace("{author}", Config.UserSettings.DevName);
+                        //rpaFile = rpaFile.Replace("{version}", Config.UserSettings.DevName);
 
                         File.WriteAllText($@"{FManager.GetProjectFolder(project)}\{StringExtension.CyrilicToLatin(project.Name)}.rpy", rpaFile);
                         break;
                 }
 
                 ResetProjectList();
+                if (Steam.IsSteamInit())
+                    Steam.GrantAchievement("ACH_ModTool_S");
             }
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            if ( DialogResult.Yes == MessageBox.Show(String.Format(Config.GetText("delete_project_message"), Program.Projects[ProjectListView.SelectedIndices[0]].Name), $"{Config.GameName} - Mod Tool", MessageBoxButtons.YesNo, MessageBoxIcon.Question) )
+            if (ProjectListView.SelectedItems.Count != 0 && DialogResult.Yes == MessageBox.Show(String.Format(Config.GetText("delete_project_message"), Program.Projects[ProjectListView.SelectedIndices[0]].Name), $"{Config.GameName} - Mod Tool", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
                 Directory.Delete($@"{AppDomain.CurrentDomain.BaseDirectory}\..\game\mods\{Program.Projects[ProjectListView.SelectedIndices[0]].Name}", true);
                 ResetProjectList();
             }
+            else
+                MessageBox.Show(Config.GetText("select_project_perform"), Config.GameName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void OpenButton_Click(object sender, EventArgs e)
@@ -156,7 +160,9 @@ namespace ModTool.Forms
                 Editor editor = new Editor(ProjectListView.SelectedIndices[0], this);
                 editor.Show();
                 Hide();
-            }          
+            }
+            else
+                MessageBox.Show(Config.GetText("select_project_perform"), Config.GameName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void ProjectListView_MouseDoubleClick(object sender, MouseEventArgs e)

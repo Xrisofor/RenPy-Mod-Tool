@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("say mickey hello world");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("label test", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("say mickey hello world");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("label test", new System.Windows.Forms.TreeNode[] {
+            treeNode3});
             this.ScriptTreeView = new System.Windows.Forms.TreeView();
             this.ScriptContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +51,7 @@
             this.TableButton = new System.Windows.Forms.Button();
             this.rpyOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.rpySaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.rpaExpButton = new System.Windows.Forms.Button();
             this.ScriptContextMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -67,16 +68,16 @@
             this.ScriptTreeView.LineColor = System.Drawing.Color.White;
             this.ScriptTreeView.Location = new System.Drawing.Point(0, 0);
             this.ScriptTreeView.Name = "ScriptTreeView";
-            treeNode1.ImageKey = "text.png";
-            treeNode1.Name = "Микки: Тест";
-            treeNode1.SelectedImageKey = "text.png";
-            treeNode1.Text = "say mickey hello world";
-            treeNode2.ImageKey = "tag.png";
-            treeNode2.Name = "label test";
-            treeNode2.SelectedImageKey = "tag.png";
-            treeNode2.Text = "label test";
+            treeNode3.ImageKey = "text.png";
+            treeNode3.Name = "Микки: Тест";
+            treeNode3.SelectedImageKey = "text.png";
+            treeNode3.Text = "say mickey hello world";
+            treeNode4.ImageKey = "tag.png";
+            treeNode4.Name = "label test";
+            treeNode4.SelectedImageKey = "tag.png";
+            treeNode4.Text = "label test";
             this.ScriptTreeView.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode4});
             this.ScriptTreeView.Size = new System.Drawing.Size(974, 673);
             this.ScriptTreeView.TabIndex = 7;
             this.ScriptTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.ScriptTreeView_AfterSelect);
@@ -157,11 +158,12 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.RpyExportButton);
             this.panel1.Controls.Add(this.AddCharacterButton);
+            this.panel1.Controls.Add(this.AddContentButton);
+            this.panel1.Controls.Add(this.rpaExpButton);
             this.panel1.Controls.Add(this.SaveButton);
             this.panel1.Controls.Add(this.OpenFileButton);
             this.panel1.Controls.Add(this.NewLabelButtom);
             this.panel1.Controls.Add(this.NewFileButton);
-            this.panel1.Controls.Add(this.AddContentButton);
             this.panel1.Controls.Add(this.TableButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(942, 0);
@@ -176,7 +178,7 @@
             this.RpyExportButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.RpyExportButton.FlatAppearance.BorderSize = 0;
             this.RpyExportButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RpyExportButton.Location = new System.Drawing.Point(0, 543);
+            this.RpyExportButton.Location = new System.Drawing.Point(0, 503);
             this.RpyExportButton.Name = "RpyExportButton";
             this.RpyExportButton.Size = new System.Drawing.Size(30, 32);
             this.RpyExportButton.TabIndex = 7;
@@ -190,7 +192,7 @@
             this.AddCharacterButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddCharacterButton.FlatAppearance.BorderSize = 0;
             this.AddCharacterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddCharacterButton.Location = new System.Drawing.Point(0, 575);
+            this.AddCharacterButton.Location = new System.Drawing.Point(0, 535);
             this.AddCharacterButton.Name = "AddCharacterButton";
             this.AddCharacterButton.Size = new System.Drawing.Size(30, 32);
             this.AddCharacterButton.TabIndex = 9;
@@ -260,7 +262,7 @@
             this.AddContentButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.AddContentButton.FlatAppearance.BorderSize = 0;
             this.AddContentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddContentButton.Location = new System.Drawing.Point(0, 607);
+            this.AddContentButton.Location = new System.Drawing.Point(0, 567);
             this.AddContentButton.Name = "AddContentButton";
             this.AddContentButton.Size = new System.Drawing.Size(30, 32);
             this.AddContentButton.TabIndex = 11;
@@ -288,6 +290,20 @@
             // rpySaveFileDialog
             // 
             this.rpySaveFileDialog.Filter = "Visual Node|*.json";
+            // 
+            // rpaExpButton
+            // 
+            this.rpaExpButton.BackgroundImage = global::ModTool.Properties.Resources.lunacy;
+            this.rpaExpButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.rpaExpButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.rpaExpButton.FlatAppearance.BorderSize = 0;
+            this.rpaExpButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rpaExpButton.Location = new System.Drawing.Point(0, 599);
+            this.rpaExpButton.Name = "rpaExpButton";
+            this.rpaExpButton.Size = new System.Drawing.Size(30, 40);
+            this.rpaExpButton.TabIndex = 12;
+            this.rpaExpButton.UseVisualStyleBackColor = true;
+            this.rpaExpButton.Click += new System.EventHandler(this.rpaExpButton_Click);
             // 
             // VisualScript
             // 
@@ -328,5 +344,6 @@
         private System.Windows.Forms.ToolStripMenuItem upToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem downToolStripMenuItem;
         private System.Windows.Forms.Button AddContentButton;
+        private System.Windows.Forms.Button rpaExpButton;
     }
 }

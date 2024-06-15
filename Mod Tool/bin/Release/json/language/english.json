@@ -91,5 +91,12 @@
   "delete_project_message": "Are you sure you want to delete {0}?",
   "error_text_none_message": "The text input fields are empty, the creation of the element has been canceled!",
   "restore_projects_message": "Do you want to restore all projects by deleting project.json or only those that for some reason no longer have it?",
-  "loading_mod_tool_error": "Error in downloading the modification toolkit. Did you install the program exactly on the disk where is the main game?"
+  "loading_mod_tool_error": "Error in downloading the modification toolkit. Did you install the program exactly on the disk where is the main game?",
+  "loading_mod_tool_warning_rpa": "Attention! The game archive was not found. Viewing game elements will be disabled. To solve this problem, install the toolkit on the disk where the main game is installed and restart the program.",
+  "settings_show_warning_desc": "This checkbox on/off alert notifications. Critical errors and Steam do not apply!",
+  "settings_show_warning": "Display warnings",
+  "error_steam_image": "The preview image was not found on the path {0}. Do you want to skip the image upload step?",
+  "settings_dev_name": "Developer's name",
+  "restore_settings_button": "Restore settings",
+  "select_project_perform": "Select a project to perform this action"
 }

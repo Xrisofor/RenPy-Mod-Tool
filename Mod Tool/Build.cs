@@ -276,8 +276,12 @@ namespace ModTool
                             {
                                 string renModLabel = StringExtension.CyrilicToLatin(Program.Projects[ModID].Name.ToLower().Replace(" ", "_").Replace("  ", "__").Replace("-", "_"));
 
+                                string renPyCode = $"init python:\n    {renModLabel} = Mod(\"{Program.Projects[ModID].Name}\", \"{renModLabel}\"";
+                                
+                                if (Config.UserSettings.DevName != string.Empty)
+                                    renPyCode += $", author=\"{Config.UserSettings.DevName}\"";
 
-                                string renPyCode = $"init python:\n    {renModLabel} = Mod(\"{Program.Projects[ModID].Name}\", \"{renModLabel}\")\n\n";
+                                renPyCode += ")\n\n";
                                 renPyCode += RenPyConverter.ConvertToRenPyCode(renPyNode);
                                 renPyCode += $"    return";
 

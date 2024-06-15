@@ -20,15 +20,6 @@
       "BoolEditor": false
     },
     {
-      "Name": "Score",
-      "Default": "0",
-      "Game": "score",
-      "Increment": 1,
-      "NumberEditor": true,
-      "TextEditor": false,
-      "BoolEditor": false
-    },
-    {
       "Name": "Snake Size",
       "Default": "60",
       "Game": "snake_size",

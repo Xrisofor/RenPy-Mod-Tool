@@ -2,6 +2,7 @@
     "thoughts",
     "mickey",
     "mickey_nvl",
+    "mickey_discord_nvl",
     "veronika",
     "veronika_nvl",
     "lera",
@@ -12,9 +13,14 @@
     "elena",
     "varya",
     "igor",
+    "igor_nvl",
     "larry",
+    "larry_nvl",
+    "larry_discord_nvl",
     "kolya",
+    "kostya_nvl",
     "polina",
+    "polina_nvl",
     "daniil",
     "maksim",
     "hristopher",
@@ -29,5 +35,8 @@
     "kostya",
     "arseniy",
     "zahar",
-    "maria"
+    "maria",
+    "anonim_nvl",
+    "timing_text",
+    "center_text"
 ]

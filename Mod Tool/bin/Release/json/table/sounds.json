@@ -18,5 +18,10 @@
     "locking_door_with_handle_gkoclrnd": "locking_door_with_handle_gkoclrnd.wav",
     "phone_send_text": "phone_send_text.ogg",
     "phone_receive_text": "phone_receive_text.ogg",
-    "cupboard_door": "cupboard_door.wav"
+    "cupboard_door": "cupboard_door.wav",
+    "shower": "shower.mp3",
+    "tooth_cleaning": "tooth_cleaning.ogg",
+    "windows_xp_shutdown": "windows_xp_shutdown.mp3",
+    "warning": "warning.ogg",
+    "discord_notification": "discord_notification.mp3"
 }

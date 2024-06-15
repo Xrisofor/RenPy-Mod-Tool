@@ -7,6 +7,10 @@ namespace ModTool
 {
     public static class Program
     {
+        // Starting Screen
+        public static SplashScreen SplashScreen;
+
+        // All Projects List
         public static List<Project> Projects = new List<Project>();
 
         [STAThread]
@@ -16,8 +20,6 @@ namespace ModTool
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main());
         }
-
-        public static SplashScreen SplashScreen;
 
         [STAThread]
         public static void StartSplashScreen()

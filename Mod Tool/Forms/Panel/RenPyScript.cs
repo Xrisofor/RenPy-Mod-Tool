@@ -19,6 +19,9 @@ namespace ModTool.Forms.Panel
 
             rpyOpenFileDialog.InitialDirectory = FManager.GetProjectFolder(ModID);
             rpySaveFileDialog.InitialDirectory = FManager.GetProjectFolder(ModID);
+
+            if (!File.Exists($"{FManager.GetGameFolder()}/archive.rpa"))
+                rpaExpButton.Visible = false;
         }
 
         public RenPyScript(int ModID, string openFilePath)
@@ -26,13 +29,16 @@ namespace ModTool.Forms.Panel
             InitializeComponent();
 
             this.ModID = ModID;
-            this.OpenFilePath = $@"{Path.GetDirectoryName(openFilePath)}/{Path.GetFileName(StringExtension.CyrilicToLatin(openFilePath))}";
+            OpenFilePath = $@"{Path.GetDirectoryName(openFilePath)}/{Path.GetFileName(StringExtension.CyrilicToLatin(openFilePath))}";
 
             fastColoredTextBox1.Text = File.ReadAllText(OpenFilePath);
-            RunFileFromProgram(openFilePath);
+            RunFileFromProgram(OpenFilePath);
 
             rpyOpenFileDialog.InitialDirectory = FManager.GetProjectFolder(ModID);
             rpySaveFileDialog.InitialDirectory = FManager.GetProjectFolder(ModID);
+
+            if (!File.Exists($"{FManager.GetGameFolder()}/archive.rpa"))
+                rpaExpButton.Visible = false;
         }
 
         private string ReplaceFCTB()
@@ -104,15 +110,11 @@ namespace ModTool.Forms.Panel
             }
         }
 
-        private void FindButton_Click(object sender, EventArgs e)
-        {
+        private void FindButton_Click(object sender, EventArgs e) =>
             fastColoredTextBox1.ShowFindDialog();
-        }
 
-        private void FindAndReplaceButton_Click(object sender, EventArgs e)
-        {
+        private void FindAndReplaceButton_Click(object sender, EventArgs e) =>
             fastColoredTextBox1.ShowReplaceDialog();
-        }
 
         private void NewFileButton_Click(object sender, EventArgs e)
         {
@@ -143,10 +145,8 @@ namespace ModTool.Forms.Panel
             rpa_Explorer.Show();
         }
 
-        private void RenPyDocButton_Click(object sender, EventArgs e)
-        {
+        private void RenPyDocButton_Click(object sender, EventArgs e) =>
             Process.Start("https://www.renpy.org/doc/html/quickstart.html#a-simple-game");
-        }
 
         private void RunFileFromProgram(string file)
         {
@@ -167,11 +167,11 @@ namespace ModTool.Forms.Panel
                 switch (Config.UserSettings.ScriptEditor.ToLower())
                 {
                     case "code":
-                        psi.Arguments = $"-g \"{file}\"";
+                        psi.Arguments = $"-folder \"{FManager.GetProjectFolder(ModID)}\" -g \"{file}\"";
                         break;
 
                     default:
-                        psi.Arguments = $"\"{file} \"";
+                        psi.Arguments = $"\"{file}\"";
                         break;
                 }
 

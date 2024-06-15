@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace ModTool.Forms
 {
@@ -175,6 +176,20 @@ namespace ModTool.Forms
             {
                 Build build = new Build(ModID);
                 build.Compile(false);
+            }
+
+            if (Program.Projects[ModID].Image != string.Empty && !File.Exists(Program.Projects[ModID].Image))
+            {
+                var pubMB = MessageBox.Show(string.Format(Config.GetText("error_steam_image"), Program.Projects[ModID].Image),
+                    Config.GameName,
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Warning);
+
+                if (pubMB == DialogResult.Yes)
+                    publish.updatePreviewImage = false;
+
+                if (pubMB == DialogResult.Cancel)
+                    return;
             }
 
             if (Program.Projects[ModID].SteamID != 0)

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Web.UI.WebControls;
 
 namespace ModTool.Forms
 {
@@ -22,6 +23,10 @@ namespace ModTool.Forms
         hide,
         scene,
         with,
+
+        // Screen
+        show_screen,
+        hide_screen,
 
         // Audio
         play_sound,
@@ -81,6 +86,20 @@ namespace ModTool.Forms
                     try { additionallyComboBox.SelectedItem = node.Character; }
                     catch { additionallyComboBox.SelectedItem = "none"; }
                     textBox1.Text = node.Content;
+                    break;
+
+                case VSObject.show_screen:
+                    int startIndex = node.Content.IndexOf('(');
+                    int endIndex = node.Content.IndexOf(')');
+
+                    if (startIndex > -1 && endIndex > startIndex)
+                    {
+                        string comboBoxContent = node.Content.Substring(0, startIndex).Trim();
+                        string textBoxContent = node.Content.Substring(startIndex + 1, endIndex - startIndex - 1);
+
+                        additionallyComboBox.SelectedItem = comboBoxContent;
+                        textBox1.Text = textBoxContent;
+                    }
                     break;
 
                 case VSObject.jump:
@@ -145,8 +164,8 @@ namespace ModTool.Forms
                         }
                     }
 
-                    Dictionary<string, string> imgShowStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\sprites.json"));
-                    showImages.AddRange( imgShowStrings.Keys );
+                    showImages.AddRange(JsonConvert.DeserializeObject<Dictionary<string, string>>(
+                        File.ReadAllText($@"{FManager.GetTableFolder()}\sprites.json")).Keys);
 
                     additionallyComboBox.DataSource = showImages;
                     break;
@@ -165,8 +184,8 @@ namespace ModTool.Forms
                         }
                     }
 
-                    Dictionary<string, string> imgHideStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\sprites.json"));
-                    hideImages.AddRange(imgHideStrings.Keys);
+                    hideImages.AddRange(JsonConvert.DeserializeObject<Dictionary<string, string>>(
+                        File.ReadAllText($@"{FManager.GetTableFolder()}\sprites.json")).Keys);
 
                     additionallyComboBox.DataSource = hideImages;
                     break;
@@ -185,8 +204,8 @@ namespace ModTool.Forms
                         }
                     }
 
-                    Dictionary<string, string> backgroundStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\backgrounds.json"));
-                    sceneImages.AddRange(backgroundStrings.Keys);
+                    sceneImages.AddRange(JsonConvert.DeserializeObject<Dictionary<string, string>>(
+                        File.ReadAllText($@"{FManager.GetTableFolder()}\backgrounds.json")).Keys);
 
                     additionallyComboBox.DataSource = sceneImages;
                     break;
@@ -196,6 +215,50 @@ namespace ModTool.Forms
 
                     additionallyComboBox.DataSource = new string[] { "dissolve", "fade", "pixellate", "moveinright", "moveinleft", "moveintop", "moveinbottom", "moveoutright", "moveoutleft", "moveouttop", "moveoutbottom",
                     "easeinright", "easeinleft", "easeintop", "easeinbottom", "easeoutright", "easeoutleft", "easeouttop", "easeoutbottom" };
+                    break;
+
+                // Screen
+                case VSObject.show_screen:
+                    additionallyComboBox.Enabled = true;
+                    textBox1.Enabled = true;
+
+                    List<string> showScreens = new List<string>();
+
+                    if (Directory.Exists($@"{FManager.GetProjectFolder(ModID)}/content"))
+                    {
+                        string[] files = Directory.GetFiles($@"{FManager.GetProjectFolder(ModID)}/content");
+                        foreach (string file in files)
+                        {
+                            if (NewContentVS.GetImageIndex(file) == 1)
+                                showScreens.Add(StringExtension.CyrilicToLatin(Path.GetFileNameWithoutExtension(file)));
+                        }
+                    }
+
+                    showScreens.AddRange(JsonConvert.DeserializeObject<List<string>>(
+                        File.ReadAllText($@"{FManager.GetTableFolder()}\screens.json")));
+
+                    additionallyComboBox.DataSource = showScreens;
+                    break;
+                case VSObject.hide_screen:
+                    additionallyComboBox.Enabled = true;
+                    textBox1.Enabled = false;
+
+                    List<string> hideScreens = new List<string>();
+
+                    if (Directory.Exists($@"{FManager.GetProjectFolder(ModID)}/content"))
+                    {
+                        string[] files = Directory.GetFiles($@"{FManager.GetProjectFolder(ModID)}/content");
+                        foreach (string file in files)
+                        {
+                            if (NewContentVS.GetImageIndex(file) == 1)
+                                hideScreens.Add(StringExtension.CyrilicToLatin(Path.GetFileNameWithoutExtension(file)));
+                        }
+                    }
+
+                    hideScreens.AddRange(JsonConvert.DeserializeObject<List<string>>(
+                        File.ReadAllText($@"{FManager.GetTableFolder()}\screens.json")));
+
+                    additionallyComboBox.DataSource = hideScreens;
                     break;
 
                 // Sound
@@ -214,8 +277,8 @@ namespace ModTool.Forms
                         }
                     }
 
-                    Dictionary<string, string> audioStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\sounds.json"));
-                    soundList.AddRange(audioStrings.Keys);
+                    soundList.AddRange(JsonConvert.DeserializeObject<Dictionary<string, string>>(
+                        File.ReadAllText($@"{FManager.GetTableFolder()}\sounds.json")).Keys);
 
                     additionallyComboBox.DataSource = soundList;
                     break;
@@ -234,8 +297,8 @@ namespace ModTool.Forms
                         }
                     }
 
-                    Dictionary<string, string> musicStrings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText($@"{FManager.GetTableFolder()}\musics.json"));
-                    musicList.AddRange(musicStrings.Keys);
+                    musicList.AddRange(JsonConvert.DeserializeObject<Dictionary<string, string>>(
+                        File.ReadAllText($@"{FManager.GetTableFolder()}\musics.json")).Keys);
 
                     additionallyComboBox.DataSource = musicList;
                     break;
@@ -261,6 +324,8 @@ namespace ModTool.Forms
                 case VSObject.hide:
                 case VSObject.scene:
                 case VSObject.play_music:
+                case VSObject.show_screen:
+                case VSObject.hide_screen:
                 case VSObject.play_sound:
                 case VSObject.stop:
                 case VSObject.with:
@@ -292,6 +357,8 @@ namespace ModTool.Forms
                 case VSObject.say:
                 case VSObject.show:
                 case VSObject.hide:
+                case VSObject.show_screen:
+                case VSObject.hide_screen:
                 case VSObject.scene:
                 case VSObject.play_music:
                 case VSObject.play_sound:

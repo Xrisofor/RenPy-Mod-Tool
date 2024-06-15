@@ -124,6 +124,7 @@ namespace ModTool.Forms
             // TypeComboBox
             // 
             this.TypeComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.TypeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TypeComboBox.ForeColor = System.Drawing.Color.White;
             this.TypeComboBox.Items.AddRange(new object[] {
             "Mode (RenPy)",

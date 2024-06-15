@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using Steamworks;
+using System.Collections.Generic;
+using System.IO;
 
 namespace ModTool
 {
@@ -36,9 +39,22 @@ namespace ModTool
     {
         public string Language = "english";
         public string ScriptEditor = "default";
+        public string DevName = SteamAPI.Init() ? SteamFriends.GetPersonaName() : string.Empty;
 
         public int PixelationSampleColors = 16;
 
+        public bool ShowWarning = true;
+
         public Dictionary<string, string> ScriptEditorList = new Dictionary<string, string>();
+    
+        public void RestoreSettings()
+        {
+            ScriptEditor = "default";
+            DevName = SteamAPI.Init() ? SteamFriends.GetPersonaName() : string.Empty;
+            PixelationSampleColors = 16;
+            ShowWarning = true;
+
+            File.WriteAllText($@"{FManager.GetJsonFolder()}\settings.json", JsonConvert.SerializeObject(Config.UserSettings));
+        }
     }
 }

@@ -34,6 +34,8 @@ namespace ModTool.Forms
                 ScriptEditorComboBox.SelectedItem = Config.UserSettings.ScriptEditor;
 
             PixelSampleColorMaxNum.Value = Config.UserSettings.PixelationSampleColors;
+            showWarningCheckBox.Checked = Config.UserSettings.ShowWarning;
+            devNameTextBox.Text = Config.UserSettings.DevName;
         }
 
         private void LanguageComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,7 +61,11 @@ namespace ModTool.Forms
             label1.Text = Config.GetText("settings_language_title");
             label2.Text = Config.GetText("settings_script_editor_title");
             label3.Text = Config.GetText("settings_pixel_sc_max_title");
+            label4.Text = Config.GetText("settings_show_warning_desc");
             restoreProjectsButton.Text = Config.GetText("settings_restore_projects_title");
+            showWarningCheckBox.Text = Config.GetText("settings_show_warning");
+            label5.Text = Config.GetText("settings_dev_name");
+            restoreSettingsButton.Text = Config.GetText("restore_settings_button");
         }
 
         private void Settings_FormClosed(object sender, FormClosedEventArgs e)
@@ -144,5 +150,19 @@ namespace ModTool.Forms
             }
         
         }
+
+        private void showWarningCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Config.UserSettings.ShowWarning = showWarningCheckBox.Checked;
+            File.WriteAllText($@"{FManager.GetJsonFolder()}\settings.json", JsonConvert.SerializeObject(Config.UserSettings));
+        }
+
+        private void devNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Config.UserSettings.DevName = devNameTextBox.Text;
+            File.WriteAllText($@"{FManager.GetJsonFolder()}\settings.json", JsonConvert.SerializeObject(Config.UserSettings));
+        }
+
+        private void restoreSettingsButton_Click(object sender, EventArgs e) => Config.UserSettings.RestoreSettings();
     }
 }

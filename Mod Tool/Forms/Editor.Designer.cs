@@ -56,7 +56,7 @@
             this.ChangeCoverButton.Name = "ChangeCoverButton";
             this.ChangeCoverButton.Size = new System.Drawing.Size(262, 35);
             this.ChangeCoverButton.TabIndex = 0;
-            this.ChangeCoverButton.Text = "Change the cover";
+            this.ChangeCoverButton.Text = "Change cover";
             this.ChangeCoverButton.UseVisualStyleBackColor = true;
             this.ChangeCoverButton.Click += new System.EventHandler(this.ChangeCoverButton_Click);
             // 

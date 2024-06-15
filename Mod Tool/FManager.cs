@@ -28,6 +28,9 @@ namespace ModTool
 
         public static string GetTempFolder()
         {
+            if (!Directory.Exists($@"{AppDomain.CurrentDomain.BaseDirectory}\temp\"))
+                Directory.CreateDirectory( $@"{AppDomain.CurrentDomain.BaseDirectory}\temp\");
+
             return $@"{AppDomain.CurrentDomain.BaseDirectory}\temp\";
         }
 
